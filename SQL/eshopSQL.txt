@@ -1,0 +1,91 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema e-shop
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema e-shop
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `e-shop` DEFAULT CHARACTER SET utf8 ;
+USE `e-shop` ;
+
+-- -----------------------------------------------------
+-- Table `e-shop`.`Produkter`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-shop`.`Produkter` (
+  `ID` INT NOT NULL,
+  `Namn` VARCHAR(45) NULL,
+  `Antal` INT NULL,
+  `Pris` DECIMAL(45) NOT NULL,
+  `Kategori` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `Namn_UNIQUE` (`Namn` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `e-shop`.`Kund`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-shop`.`Kund` (
+  `Användar-ID` VARCHAR(45) NOT NULL,
+  `Lösenord` VARCHAR(45) NULL,
+  `Namn` VARCHAR(45) NULL,
+  `Address` VARCHAR(45) NULL,
+  `Email` VARCHAR(45) NULL,
+  `Personnummer` INT NULL,
+  PRIMARY KEY (`Användar-ID`),
+  UNIQUE INDEX `Användar-ID_UNIQUE` (`Användar-ID` ASC),
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
+  UNIQUE INDEX `Personnummer_UNIQUE` (`Personnummer` ASC),
+  UNIQUE INDEX `Address_UNIQUE` (`Address` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `e-shop`.`Order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-shop`.`Order` (
+  `ID` INT NOT NULL,
+  `Antal` VARCHAR(45) NULL,
+  `Produkter_ID` INT NOT NULL,
+  `Pris` VARCHAR(45) NULL,
+  `Kund_ID` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_Order_Produkter_idx` (`Produkter_ID` ASC),
+  INDEX `fk_Order_Kund1_idx` (`Kund_ID` ASC),
+  CONSTRAINT `fk_Order_Produkter`
+    FOREIGN KEY (`Produkter_ID`)
+    REFERENCES `e-shop`.`Produkter` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Order_Kund1`
+    FOREIGN KEY (`Kund_ID`)
+    REFERENCES `e-shop`.`Kund` (`Användar-ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `e-shop`.`Admin`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e-shop`.`Admin` (
+  `Användar-ID` VARCHAR(45) NOT NULL,
+  `Lösenord` VARCHAR(45) NULL,
+  `Namn` VARCHAR(45) NULL,
+  `Address` VARCHAR(45) NULL,
+  `Email` VARCHAR(45) NULL,
+  `Personnummer` VARCHAR(45) NULL,
+  PRIMARY KEY (`Användar-ID`),
+  UNIQUE INDEX `Användar-ID_UNIQUE` (`Användar-ID` ASC))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
