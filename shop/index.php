@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<?php include 'functions/functions.php'; ?>
+
  <html>
 
  <head>
@@ -49,10 +51,12 @@
 
          <ul id="categories_list">
 
-          <li><a href="#">Traditional</a></li>
-          <li><a href="#">Dyed ones</a></li>
-          <li><a href="#">With costumes</a></li>
-          <li><a href="#">Inflatables</a></li>
+
+           <?php
+
+           getCategories();
+
+              ?>
 
          </ul>
 
