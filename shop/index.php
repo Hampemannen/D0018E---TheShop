@@ -64,7 +64,13 @@
        </div>
 
 
-       <div id="content_area">Content</div>
+       <div id="content_area">
+         <?php
+          
+          getProducts();
+
+          ?>
+       </div>
        <div id="footer">Footer</div>
 
       </div>
