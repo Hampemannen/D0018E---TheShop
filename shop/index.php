@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
  <html>
 
  <head>
@@ -8,33 +9,66 @@
 
  </head>
 
-
  <body>
 
+   <!-- Main content Start -->
    <div class="main_wrapper">
 
-    <div class="header_wrapper">
-      <img src="images/shoplogo.jpg"
-    </div>
+     <!-- Header Start -->
+     <div class="header_wrapper">
+       <img src="images/shoplogo.jpg">
+     </div>
+     <!-- Header End -->
 
-    <div class="menubar"></div>
+     <!-- Menubar Start -->
+     <div class="menubar">
 
-    <div class="content_wrapper">
+      <ul id="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Sign up</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
 
-        <div id="sidebar">Sidebar</div>
-        <div id="conten_area">Content</div>
-        <div id="footer">Footer</div>
-    </div>
+      <div id="form">
+        <form>
+          <input type="text" name="search" placeholder="Search product..">
+          <input type="image"  src="images/search.png" name="submit" value="Search">
+        </form>
+      </div>
+
+     </div>
+     <!-- Menubar End -->
+
+     <!-- Content wrapper Start -->
+     <div class="content_wrapper">
+
+       <div id="sidebar">
+
+         <div id="sidebar_title">Categories</div>
+
+         <ul id="categories_list">
+
+          <li><a href="#">Traditional</a></li>
+          <li><a href="#">Dyed ones</a></li>
+          <li><a href="#">With costumes</a></li>
+          <li><a href="#">Inflatables</a></li>
+
+         </ul>
+
+
+       </div>
+
+
+       <div id="content_area">Content</div>
+       <div id="footer">Footer</div>
+
+      </div>
+      <!-- Content wrapper End -->
 
 
    </div>
-
-
-<!-- <?php
-
-echo "Hello"
-
-?> -->
+   <!-- Main content End -->
 
 
  </body>
