@@ -15,98 +15,97 @@ CREATE SCHEMA IF NOT EXISTS `e-shop` DEFAULT CHARACTER SET utf8 ;
 USE `e-shop` ;
 
 -- -----------------------------------------------------
--- Table `e-shop`.`Produkter`
+-- Table `e-shop`.`Products`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e-shop`.`Produkter` (
-  `ID` INT NOT NULL,
-  `Namn` VARCHAR(45) NULL,
-  `Antal` INT NULL,
-  `Pris` DECIMAL(45) NOT NULL,
-  `Kategori` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE INDEX `Namn_UNIQUE` (`Namn` ASC))
+CREATE TABLE IF NOT EXISTS `e-shop`.`Products` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `quantity` INT NULL,
+  `price` DECIMAL(45) NOT NULL,
+  `category` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Namn_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `e-shop`.`Admin`
+-- Table `e-shop`.`Admins`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e-shop`.`Admin` (
-  `Användar-ID` VARCHAR(45) NOT NULL,
-  `Lösenord` VARCHAR(45) NULL,
-  `Namn` VARCHAR(45) NULL,
-  `Address` VARCHAR(45) NULL,
-  `Email` VARCHAR(45) NULL,
-  `Personnummer` VARCHAR(45) NULL,
-  PRIMARY KEY (`Användar-ID`),
-  UNIQUE INDEX `Användar-ID_UNIQUE` (`Användar-ID` ASC))
+CREATE TABLE IF NOT EXISTS `e-shop`.`Admins` (
+  `user_id` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NULL,
+  `address` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `ssn` VARCHAR(45) NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `Användar-ID_UNIQUE` (`user_id` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `e-shop`.`Kundvagn`
+-- Table `e-shop`.`Shopping Carts`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e-shop`.`Kundvagn` (
-  `Pris` DECIMAL(45) NULL,
-  `Antal` INT NULL,
-  `ID` VARCHAR(45) NOT NULL,
-  `Kundvagncol` VARCHAR(45) NULL,
-  `Produkter_ID` INT NOT NULL,
-  PRIMARY KEY (`ID`),
-  INDEX `fk_Kundvagn_Produkter1_idx` (`Produkter_ID` ASC),
+CREATE TABLE IF NOT EXISTS `e-shop`.`Shopping Carts` (
+  `price` DECIMAL(45) NULL,
+  `quantity` INT NULL,
+  `id` VARCHAR(45) NOT NULL,
+  `products_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Kundvagn_Produkter1_idx` (`products_id` ASC),
   CONSTRAINT `fk_Kundvagn_Produkter1`
-    FOREIGN KEY (`Produkter_ID`)
-    REFERENCES `e-shop`.`Produkter` (`ID`)
+    FOREIGN KEY (`products_id`)
+    REFERENCES `e-shop`.`Products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `e-shop`.`Kund`
+-- Table `e-shop`.`Customers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e-shop`.`Kund` (
-  `Användar-ID` VARCHAR(45) NOT NULL,
-  `Lösenord` VARCHAR(45) NULL,
-  `Namn` VARCHAR(45) NULL,
-  `Address` VARCHAR(45) NULL,
-  `Email` VARCHAR(45) NULL,
-  `Personnummer` INT NULL,
-  `Kundvagn_ID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Användar-ID`),
-  UNIQUE INDEX `Användar-ID_UNIQUE` (`Användar-ID` ASC),
-  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
-  UNIQUE INDEX `Personnummer_UNIQUE` (`Personnummer` ASC),
-  UNIQUE INDEX `Address_UNIQUE` (`Address` ASC),
-  INDEX `fk_Kund_Kundvagn1_idx` (`Kundvagn_ID` ASC),
+CREATE TABLE IF NOT EXISTS `e-shop`.`Customers` (
+  `user_id` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NULL,
+  `address` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `ssn` INT NULL,
+  `shopping cart id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `Användar-ID_UNIQUE` (`user_id` ASC),
+  UNIQUE INDEX `Email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `Personnummer_UNIQUE` (`ssn` ASC),
+  UNIQUE INDEX `Address_UNIQUE` (`address` ASC),
+  INDEX `fk_Kund_Kundvagn1_idx` (`shopping cart id` ASC),
   CONSTRAINT `fk_Kund_Kundvagn1`
-    FOREIGN KEY (`Kundvagn_ID`)
-    REFERENCES `e-shop`.`Kundvagn` (`ID`)
+    FOREIGN KEY (`shopping cart id`)
+    REFERENCES `e-shop`.`Shopping Carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `e-shop`.`Recensioner`
+-- Table `e-shop`.`Reviews`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e-shop`.`Recensioner` (
-  `ID` INT NOT NULL,
-  `Betyg` INT NULL,
-  `Kommentar` VARCHAR(250) NULL,
-  `Produkter_ID` INT NOT NULL,
-  `Kund_Användar-ID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`),
-  INDEX `fk_Recensioner_Produkter1_idx` (`Produkter_ID` ASC),
-  INDEX `fk_Recensioner_Kund1_idx` (`Kund_Användar-ID` ASC),
+CREATE TABLE IF NOT EXISTS `e-shop`.`Reviews` (
+  `id` INT NOT NULL,
+  `rating` INT NULL,
+  `comment` VARCHAR(250) NULL,
+  `products_id` INT NOT NULL,
+  `costumer user_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Recensioner_Produkter1_idx` (`products_id` ASC),
+  INDEX `fk_Recensioner_Kund1_idx` (`costumer user_id` ASC),
   CONSTRAINT `fk_Recensioner_Produkter1`
-    FOREIGN KEY (`Produkter_ID`)
-    REFERENCES `e-shop`.`Produkter` (`ID`)
+    FOREIGN KEY (`products_id`)
+    REFERENCES `e-shop`.`Products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Recensioner_Kund1`
-    FOREIGN KEY (`Kund_Användar-ID`)
-    REFERENCES `e-shop`.`Kund` (`Användar-ID`)
+    FOREIGN KEY (`costumer user_id`)
+    REFERENCES `e-shop`.`Customers` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -123,12 +122,12 @@ CREATE TABLE IF NOT EXISTS `e-shop`.`Produkter_has_Recensioner` (
   INDEX `fk_Produkter_has_Recensioner_Produkter1_idx` (`Produkter_ID` ASC),
   CONSTRAINT `fk_Produkter_has_Recensioner_Produkter1`
     FOREIGN KEY (`Produkter_ID`)
-    REFERENCES `e-shop`.`Produkter` (`ID`)
+    REFERENCES `e-shop`.`Products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Produkter_has_Recensioner_Recensioner1`
     FOREIGN KEY (`Recensioner_ID`)
-    REFERENCES `e-shop`.`Recensioner` (`ID`)
+    REFERENCES `e-shop`.`Reviews` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
