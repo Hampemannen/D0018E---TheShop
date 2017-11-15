@@ -63,18 +63,29 @@
 
        </div>
 
+       <div id="product_area">
 
-       <div id="content_area">
-         <?php
-          
-          getProducts();
+         <div id="content_title">All products</div>
 
-          ?>
+         <ul id="products_list">
+
+
+           <?php
+
+           getProducts();
+
+              ?>
+
+         </ul>
+
+
        </div>
-       <div id="footer">Footer</div>
+
 
       </div>
       <!-- Content wrapper End -->
+
+      <div id="footer">Footer</div>
 
 
    </div>

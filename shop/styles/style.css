@@ -69,12 +69,46 @@ body{
   background: #B0BEC5;
 }
 
-#content_area{
+
+#product_area{
   width: 800px;
-  height: 800px
+  height: 800px;
   float: right;
   background: #B0BEC5;
+}
 
+#content_title{
+	background: #37474F;
+	color: #CFD8DC;
+	font-size:25px;
+	font-family: Palatino Linotype;
+	padding: 20px;
+	text-align: center;
+}
+
+#products_list{
+	text-align: center;
+}
+
+#products_list li{
+	list-style: none;
+	display: block;
+	padding: 20px;
+}
+
+#products_list a{
+	text-decoration: none;
+	color: #B0BEC5;
+	font-size:15px;
+	font-family: Palatino Linotype;
+	margin: 5px;
+	text-align: center;
+	padding: 20px;
+}
+
+#products_list a:hover{
+	color:#78909C;
+	font-weight: bolder;
 }
 
 #sidebar{
