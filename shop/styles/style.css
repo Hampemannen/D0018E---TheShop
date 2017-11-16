@@ -78,9 +78,9 @@ body{
 }
 
 #content_title{
-	background: #37474F;
-	color: #CFD8DC;
-	font-size:25px;
+	background: #90A4AE;
+	color: #607D8B;
+	font-size:20px;
 	font-family: Palatino Linotype;
 	padding: 20px;
 	text-align: center;
@@ -98,17 +98,16 @@ body{
 
 #products_list a{
 	text-decoration: none;
-	color: #B0BEC5;
-	font-size:15px;
+	color: #263238;
+	font-size:10px;
 	font-family: Palatino Linotype;
-	margin: 5px;
+	margin: 2px;
 	text-align: center;
 	padding: 20px;
 }
 
 #products_list a:hover{
-	color:#78909C;
-	font-weight: bolder;
+	color:#37474F;
 }
 
 #sidebar{
