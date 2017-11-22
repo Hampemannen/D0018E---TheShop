@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 
-<?php include 'functions/functions.php'; ?>
+<?php include '../functions/functions.php'; ?>
+<?php session_start(); ?>
 
  <html>
 
  <head>
 
  <title>The Shop</title>
- <link rel="stylesheet" href="styles/style.css" media="all" />
+ <link rel="stylesheet" href="../styles/style.css" media="all" />
 
  </head>
 
  <body>
-
    <!-- Main content Start -->
    <div class="main_wrapper">
-
      <!-- Header Start -->
      <div class="header_wrapper">
-       <img src="images/shoplogo.jpg">
+       <img src="../images/shoplogo.jpg">
      </div>
      <!-- Header End -->
 
@@ -27,15 +26,16 @@
 
       <ul id="menu">
         <li><a href="#">Home</a></li>
-        <li><a href= "./Login/login.php">Login</a></li>
+        <li><a href="#">Login</a></li>
         <li><a href="#">Sign up</a></li>
         <li><a href="#">Contact us</a></li>
       </ul>
 
-      <div id="form">
-        <form>
-          <input type="text" name="search" placeholder="Search product..">
-          <input type="image"  src="images/search.png" name="submit" value="Search">
+      <div id="Login">
+        <form action = "DBCheck.php" method = "post">
+           <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+           <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+           <input type = "submit" value = " Submit "/><br />
         </form>
       </div>
 
@@ -69,18 +69,10 @@
 
          <ul id="products_list">
 
-
-           <?php
-
-           getProducts();
-
-              ?>
-
          </ul>
 
 
        </div>
-
 
       </div>
       <!-- Content wrapper End -->
