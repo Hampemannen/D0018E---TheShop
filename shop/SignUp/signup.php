@@ -3,7 +3,6 @@
 <?php include '../functions/functions.php';?>
 <?php session_start(); ?>
  <html>
-
  <head>
 
  <title>The Shop</title>
@@ -25,23 +24,28 @@
 
       <ul id="menu">
         <li><a href="../index.php">Home</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="../SignUp/signup.php">Sign up</a></li>
+        <li><a href="../Login/login.php">Login</a></li>
+        <li><a href="./signup.php">Sign up</a></li>
         <li><a href="#">Contact us</a></li>
       </ul>
 
 <?php
   if (!isset($_SESSION['UserSession'])) {?>
-    <div id="loginform" class="loginform" >
-      <form action = "DBCheck.php" method = "post">
+    <div id="signform" class="loginform" >
+      <form action = "DBSignUp.php" method = "post">
          <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
          <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+         <label>Re-enter password  :</label><input type = "password_re" name = "password" class = "box" /><br/><br />
+         <label>Name  :</label><input type = "text" name = "name" class = "box" /><br/><br />
+         <label>address  :</label><input type = "text" name = "address" class = "box" /><br/><br />
+         <label>email  :</label><input type = "text" name = "email" class = "box" /><br/><br />
+         <label>ssn  :</label><input type = "text" name = "ssn" class = "box" /><br/><br />
          <input type = "submit" value = " Submit "/><br />
       </form>
     </div>
 <?php }else if(isset($_SESSION['UserSession'])) {
   echo $_SESSION['UserSession']?>
-  <form method="get" action="./logout.php">
+  <form method="get" action="../Login/logout.php">
     <button type="submit">Logout</button>
   </form>
 <?php } ?>

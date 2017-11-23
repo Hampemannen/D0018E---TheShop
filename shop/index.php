@@ -32,7 +32,7 @@ if(isset($_SESSION['UserSession'])){
       <ul id="menu">
         <li><a href="#">Home</a></li>
         <li><a href= "./Login/login.php">Login</a></li>
-        <li><a href="#">Sign up</a></li>
+        <li><a href="./SignUp/signup.php">Sign up</a></li>
         <li><a href="#">Contact us</a></li>
       </ul>
 

@@ -7,7 +7,7 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   header("Location:../index.php"); /* Redirect browser */
   exit;
 }else{
-  header("Location:./login.php");
+  header(c);
   exit;
 }
 /* Make sure that code below does not get executed when we redirect. */
