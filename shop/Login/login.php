@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
-<?php include '../functions/functions.php'; ?>
+<?php include '../functions/functions.php';?>
 <?php session_start(); ?>
-
  <html>
 
  <head>
@@ -25,19 +24,35 @@
      <div class="menubar">
 
       <ul id="menu">
-        <li><a href="#">Home</a></li>
+        <li><a href="../index.php">Home</a></li>
         <li><a href="#">Login</a></li>
         <li><a href="#">Sign up</a></li>
         <li><a href="#">Contact us</a></li>
       </ul>
 
-      <div id="Login">
-        <form action = "DBCheck.php" method = "post">
-           <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-           <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-           <input type = "submit" value = " Submit "/><br />
-        </form>
-      </div>
+<?php
+  if (!isset($_SESSION['UserSession'])) {?>
+    <div id="loginform" class="loginform" >
+      <form action = "DBCheck.php" method = "post">
+         <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+         <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+         <input type = "submit" value = " Submit "/><br />
+      </form>
+    </div>
+<?php }else if(isset($_SESSION['UserSession'])) {
+  echo $_SESSION['UserSession']?>
+  <form method="get" action="./logout.php">
+    <button type="submit">Logout</button>
+  </form>
+<?php } ?>
+
+
+
+
+
+
+
+
 
      </div>
      <!-- Menubar End -->

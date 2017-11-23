@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
 <?php include 'functions/functions.php'; ?>
+<?php session_start();
+if(isset($_SESSION['UserSession'])){
+  echo $_SESSION['UserSession'];
+};?>
 
  <html>
 
