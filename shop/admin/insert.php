@@ -4,7 +4,7 @@
 
 <html>
   <head>
-    <title>Product insert</title>
+    <title>Product insertion</title>
   </head>
 
 <body bgcolor="#B0BEC5">
@@ -19,13 +19,13 @@
 
       <tr>
         <td align="right">Product name:</td>
-        <td><input type="text" name="products_name"></td>
+        <td><input type="text" name="products_name" required></td>
       </tr>
 
       <tr>
         <td align="right">Product category:</td>
         <td>
-          <select name="products_categories">
+          <select name="products_categories" required>
             <option>Select category</option>
 
             <?php
@@ -51,17 +51,19 @@
 
       <tr>
         <td align="right">Product price:</td>
-        <td><input type="text" name="products_price"></td>
+        <td><input type="text" name="products_price" required></td>
       </tr>
 
       <tr>
         <td align="right">Product quantity:</td>
-        <td><input type="text" name="products_quantity"></td>
+        <td><input type="text" name="products_quantity" requiered></td>
       </tr>
 
       <tr align="center">
-        <td colspan="8"><input type="submit" name="insert_post" value="Insert product"></td>
+        <td align="right"><input type="submit" name="insert_post" value="Insert product"></td>
+        <td align="left"><input type="reset" value="Reset"></td>
       </tr>
+
 
     </table>
 
