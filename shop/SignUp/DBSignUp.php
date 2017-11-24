@@ -31,14 +31,14 @@
     </ul>
     <?php function InsertUserCredentials($username,$password,$name,$address,$email,$ssn,$conn){
       //Format username
-      $username="'".$username."'";
+      $usernamestring="'".$username."'";
       $password="'".$password."'";
       $name="'".$name."'";
       $address="'".$address."'";
       $email="'".$email."'";
       $ssn="'".$ssn."'";
       //Find the User in the DB and its corresponding password
-      $query= "SELECT user_id FROM users WHERE ( user_id =$username) ";
+      $query= "SELECT user_id FROM users WHERE ( user_id =$usernamestring) ";
       $result = mysqli_query($conn,$query);
       if(mysqli_num_rows($result)==1){
         echo "Username is already taken! Try again duckie!";
@@ -46,9 +46,34 @@
         exit();
       }
       $query="INSERT INTO `users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`, `Shopping Carts_id`)
-      VALUES ($username,$password,$name,$address,$email,$ssn,'0','1')";
+      VALUES ($usernamestring,$password,$name,$address,$email,$ssn,'0','1')";
       $result = mysqli_query($conn,$query);
+      if($result){
+        echo "the query was successful";
+      }else{
+        echo mysqli_error($conn);
+        echo "Something doesnt work anymore";
+      }
+      CreateUserCart($username,$conn);
+      echo "HELLO WORLD AGAIN TIRED DUCKIE AWESOME";
       }
       ?>
+
+<?php function CreateUserCart($username,$conn){
+        //Format username
+        $Cartname=$username."Cart";
+        //Find the User in the DB and its corresponding password
+        $query= "CREATE TABLE $Cartname like `shopping carts`";
+        echo $query;
+        $result = mysqli_query($conn,$query);
+        if($result){
+          echo "the query table creation was successful";
+        }else{
+          echo mysqli_error($conn);
+          echo "Something with the table creation doesnt work anymore";
+        }
+        echo $result;
+        }
+        ?>
 </body>
 </html>
