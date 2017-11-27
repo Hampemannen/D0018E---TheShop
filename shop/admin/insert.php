@@ -59,6 +59,21 @@
         <td><input type="text" name="products_quantity" requiered></td>
       </tr>
 
+      <tr>
+        <td align="right">Product image:</td>
+        <td><input type="file" name="products_image" requiered></td>
+      </tr>
+
+      <tr>
+        <td align="right">Product keywords:</td>
+        <td><input type="text" name="products_keywords" required></td>
+      </tr>
+
+      <tr>
+        <td align="right">Product description:</td>
+        <td><textarea name="products_description" cols="25" rows="5"></textarea></td>
+      </tr>
+
       <tr align="center">
         <td align="right"><input type="submit" name="insert_post" value="Insert product"></td>
         <td align="left"><input type="reset" value="Reset"></td>
@@ -86,12 +101,21 @@
     $products_categories = $_POST['products_categories'];
     $products_price = $_POST['products_price'];
     $products_quantity = $_POST['products_quantity'];
+    $products_keywords = $_POST['products_keywords'];
+    $products_description = $_POST['products_description'];
+    $products_image = $_FILES['products_image']['name'];
+    $products_image_tmp = $_FILES['products_image']['tmp_name'];
 
-    $get_product ="INSERT INTO products (name, categories_id, price, quantity) VALUES('$products_name','$products_categories','$products_price','$products_quantity')";
+    move_uploaded_file($products_image_tmp, "images/$products_image");
+
+    $get_product ="INSERT INTO products (name, quantity, price, categories_id, keywords, description, image) VALUES('$products_name','$products_quantity','$products_price','$products_categories', '$products_keywords', '$products_description', '$products_image' )";
 
     /* Inserting data to the DB */
     $insert_product = mysqli_query($conn, $get_product);
 
+    if($insert_product){
+      echo "Product has been inserted";
+    }
 
   }
 

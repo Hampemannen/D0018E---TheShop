@@ -71,7 +71,7 @@ if(isset($_SESSION['UserSession'])){
 
          <div id="content_title">All products</div>
 
-         <ul id="products_list">
+         <div id="products">
 
 
            <?php
@@ -80,7 +80,7 @@ if(isset($_SESSION['UserSession'])){
 
               ?>
 
-         </ul>
+         </div>
 
 
        </div>

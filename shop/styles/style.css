@@ -79,35 +79,11 @@ body{
 
 #content_title{
 	background: #90A4AE;
-	color: #607D8B;
+	color: #263238;
 	font-size:20px;
 	font-family: Palatino Linotype;
 	padding: 20px;
 	text-align: center;
-}
-
-#products_list{
-	text-align: center;
-}
-
-#products_list li{
-	list-style: none;
-	display: block;
-	padding: 20px;
-}
-
-#products_list a{
-	text-decoration: none;
-	color: #263238;
-	font-size:10px;
-	font-family: Palatino Linotype;
-	margin: 2px;
-	text-align: center;
-	padding: 20px;
-}
-
-#products_list a:hover{
-	color:#37474F;
 }
 
 #sidebar{
@@ -150,6 +126,29 @@ body{
 #categories_list a:hover{
 	color:#78909C;
 	font-weight: bolder;
+}
+
+#products{
+	width:780px;
+	text-align: center;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+#each_product{
+	color: #455A64;
+	float: left;
+	margin-left: 25px;
+	padding: 10px;
+	font-family: Palatino Linotype;
+}
+
+#each_product p{
+	font-size: 12px;
+}
+
+#each_product img{
+	border: 4px solid #546E7A;
 }
 
 #footer{
