@@ -35,6 +35,7 @@
 
     while ($row_products=mysqli_fetch_array($run_products)){
 
+
       $name = $row_products['name'];
       $price = $row_products['price'];
       $quantity = $row_products['quantity'];
