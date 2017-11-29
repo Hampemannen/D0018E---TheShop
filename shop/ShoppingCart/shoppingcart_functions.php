@@ -3,15 +3,19 @@
   //Format username
   $usernamestring="'".$username."'";
   $productidstring="'".$productid."'";
-  //Find the User in the DB and its corresponding password
   $query= "SELECT * FROM products WHERE ( id =$productidstring) ";
-  $result = mysqli_query($conn,$query);
-  if(mysqli_num_rows($result)==1){
+  $resultproducts = mysqli_query($conn,$query);
+  $resultproducts=mysqli_fetch_array($resultproducts);
+  $query= "SELECT * FROM `shopping carts` WHERE ( User_id =$usernamestring And products_id=$productidstring ) ";
+  $resultshoppingcart = mysqli_query($conn,$query);
+  $resultshoppingcart=mysqli_fetch_array($resultshoppingcart)
+  if(mysqli_num_rows($resultproducts)==0){
     echo "The product doesnt exist";
     header( "refresh:3; ../index.php" );
     exit();
   }
-  $price= $result['price']
+  $row_categories=mysqli_fetch_array($run_categories)
+  $price= $resultproducts['price']*($resultshoppingcart['quantity']+1);
   $query="INSERT INTO `shopping carts`(`price`, `quantity`, `products_id`, `Users_id`)
   VALUES ($usernamestring,1,$productidstring,$usernamestring)";
   $result = mysqli_query($conn,$query);
