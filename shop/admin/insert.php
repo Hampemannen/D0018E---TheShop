@@ -79,14 +79,6 @@
         <td align="left"><input type="reset" value="Reset"></td>
       </tr>
 
-      <tr>
-        <td>
-          <form action="../">
-            <input type="submit" value="Back">
-          </form>
-        </td>
-      </tr>
-
 
     </table>
 
@@ -122,11 +114,7 @@
     $insert_product = mysqli_query($conn, $get_product);
 
     if($insert_product){
-      echo"
-      <script>
-        alert('Product successfully inserted.');
-      </script>
-      ";
+      echo "Product has been inserted";
     }
 
   }

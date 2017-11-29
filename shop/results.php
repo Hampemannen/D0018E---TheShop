@@ -37,7 +37,7 @@ if(isset($_SESSION['UserSession'])){
       </ul>
 
       <div id="form">
-        <form method="get" action="results.php" enctype="multipart/form-data">
+        <form>
           <input type="text" name="search" placeholder="Search product..">
           <input type="image"  src="images/search.png" name="submit" value="Search">
         </form>
@@ -76,8 +76,37 @@ if(isset($_SESSION['UserSession'])){
 
            <?php
 
-           getProducts();
-           getCategoriesProducts();
+            if(isset($_GET['submit'])){
+
+              $search_query = $_GET['search'];
+
+             $get_products = "SELECT * FROM products WHERE keywords LIKE '%$search_query%'";
+             $run_products = mysqli_query($conn, $get_products);
+
+             while ($row_products=mysqli_fetch_array($run_products)){
+
+               $id = $row_products['id'];
+               $name = $row_products['name'];
+               $price = $row_products['price'];
+               $quantity = $row_products['quantity'];
+               $category = $row_products['categories_id'];
+               $image = $row_products['image'];
+
+
+               echo"
+               <a href='#'>
+                 <div id='each_product'>
+                   <h3>$name</h3>
+                   <img src='admin/images/$image' width='200' height='200'/>
+                   <p> price: $price crowns </p>
+                   <p> quantity: $quantity left </p>
+                 </div>
+                 </a>
+               ";
+             }
+
+           }
+
 
               ?>
 
