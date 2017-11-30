@@ -26,6 +26,34 @@
 
   }
 
+  function InsertProduct($username,$productid,$conn){
+    //Format username
+    $usernamestring="'".$username."'";
+    $productidstring="'".$productid."'";
+    $query= "SELECT * FROM products WHERE ( id =$productidstring) ";
+    $resultproducts = mysqli_query($conn,$query);
+    $resultproducts = mysqli_fetch_array($resultproducts);
+    $query= "SELECT * FROM shopping carts WHERE ( User_id =$usernamestring And products_id=$productidstring ) ";
+    /*$resultshoppingcart = mysqli_query($conn,$query);
+    $resultshoppingcart = mysqli_fetch_array($resultshoppingcart);
+    if(mysqli_num_rows($resultproducts)==0){
+      echo "The product doesnt exist";
+      header( "refresh:3; ../index.php" );
+      exit();
+    }
+    $row_categories=mysqli_fetch_array($run_categories);*/
+    $price= $resultproducts['price'];
+    $query="INSERT INTO shopping carts(price, quantity, products_id, Users_id) VALUES ($price,1,$productidstring,5)";
+    $result = mysqli_query($conn,$query);
+    if($result){
+      echo "the query was successful";
+    }else{
+      echo mysqli_error($conn);
+      echo "Something doesnt work anymore";
+    }
+    echo "HELLO WORLD AGAIN TIRED DUCKIE AWESOME";
+    }
+
   function getProducts(){
 
     if(!isset($_GET['categories'])){
@@ -52,13 +80,29 @@
           <img src='admin/images/$image' width='200' height='200'/>
           <p> price: $price crowns </p>
           <p> quantity: $quantity left </p>
+		  <input type='submit' name='add_to_cart' value='Add to cart'>
         </div>
         </a>
       ";
     }
 
   }
+
+  if(isset($_POST['add_to_cart'])){
+
+        echo"Yo";
+        InsertProduct($_SESSION['UserSession'],$id,$conn);
+
+        if($inertProduct){
+
+        echo"
+        <script>
+          alert('To shopping cart.');
+        </script>
+        ";
+      }
   }
+}
 
   function getCategoriesProducts(){
 

@@ -114,7 +114,9 @@
     $insert_product = mysqli_query($conn, $get_product);
 
     if($insert_product){
-      echo "Product has been inserted";
+      echo "<script>
+        alert('Product successfully inserted.');
+      </script>";
     }
 
   }

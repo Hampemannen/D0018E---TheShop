@@ -199,6 +199,10 @@ body{
 	line-height: 45px;
 }
 
+#form input[type=submit] {
+padding-bottom: 50px;
+}
+
 
 div.loginform {
 	position: relative;

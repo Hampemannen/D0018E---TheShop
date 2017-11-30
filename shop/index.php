@@ -43,6 +43,7 @@ if(isset($_SESSION['UserSession'])){
         </form>
       </div>
 
+
      </div>
      <!-- Menubar End -->
 
@@ -69,7 +70,7 @@ if(isset($_SESSION['UserSession'])){
 
        <div id="product_area">
 
-         <div id="content_title">All products</div>
+         <div id="content_title">Products</div>
 
          <div id="products">
 
