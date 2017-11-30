@@ -7,7 +7,7 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   header("Location:../index.php"); /* Redirect browser */
   exit;
 }else{
-  echo "Wrong username or password"
+  echo "Wrong username or password";
   header( "refresh:2; ./login.php" );
   exit;
 }
