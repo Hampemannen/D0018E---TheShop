@@ -2,9 +2,11 @@
 <?php
 if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   session_start();
+  $Userinfo=GetUserinfo($_POST['username'],$conn);
   $_SESSION["LoginSession"] = 1;
   $_SESSION["UserSession"] = $_POST['username'];
-  header("Location:../index.php"); /* Redirect browser */
+  $_SESSION["id"]=$Userinfo["id"];
+  header(" ../index.php"); /* Redirect browser */
   exit;
 }else{
   echo "Wrong username or password";
@@ -95,5 +97,20 @@ function CheckCredentials($username,$password,$conn){
   }
   }
   ?>
+
+
+
+<?php  function GetUserinfo($username,$conn){
+    //Format username
+    $username="'".$username."'";
+    //Find the User in the DB
+    $user_id = "SELECT user_id,id FROM users WHERE ( user_id =$username ) ";
+    $result = mysqli_query($conn,$user_id);
+    if(mysqli_num_rows($result)==1){
+      $result=mysqli_fetch_array($result);
+      return $result;
+    }
+    }
+    ?>
 </body>
 </html>
