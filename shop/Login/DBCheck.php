@@ -7,7 +7,8 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   header("Location:../index.php"); /* Redirect browser */
   exit;
 }else{
-  header(c);
+  echo "Wrong username or password"
+  header( "refresh:2; ./login.php" );
   exit;
 }
 /* Make sure that code below does not get executed when we redirect. */
@@ -34,9 +35,9 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
 
 
     <ul id="menu">
-      <li><a href="http://localhost/D0018E---TheShop-master/D0018E---TheShop-master/shop/">Home</a></li>
-      <li><a href="http://localhost/D0018E---TheShop-master/D0018E---TheShop-master/shop/Login/login.php">Login</a></li>
-      <li><a href="#">Sign up</a></li>
+      <li><a href="../index.php">Home</a></li>
+      <li><a href="./login.php">Login</a></li>
+      <li><a href="../SignUp/signup.php">Sign up</a></li>
       <li><a href="#">Contact us</a></li>
     </ul>
 
