@@ -31,9 +31,11 @@
     $usernamestring="'".$username."'";
     $productidstring="'".$productid."'";
     $query= "SELECT * FROM products WHERE ( id =$productidstring) ";
+
     $resultproducts = mysqli_query($conn,$query);
     $resultproducts = mysqli_fetch_array($resultproducts);
     $query= "SELECT * FROM shopping carts WHERE ( User_id =$usernamestring And products_id=$productidstring ) ";
+
     /*$resultshoppingcart = mysqli_query($conn,$query);
     $resultshoppingcart = mysqli_fetch_array($resultshoppingcart);
     if(mysqli_num_rows($resultproducts)==0){
@@ -80,20 +82,20 @@
           <img src='admin/images/$image' width='200' height='200'/>
           <p> price: $price crowns </p>
           <p> quantity: $quantity left </p>
-		  <input type='submit' name='add_to_cart' value='Add to cart'>
+          <form method='get' action='./ShoppingCart/DBShoppingCart.php'>
+		      <input type='submit' name='add_to_cart' value= $id >
         </div>
         </a>
       ";
     }
-
   }
 
   if(isset($_POST['add_to_cart'])){
 
-        echo"Yo";
+        echo "GHHHHHHHHHHHHHHHH";
         InsertProduct($_SESSION['UserSession'],$id,$conn);
 
-        if($inertProduct){
+        if($insertProduct){
 
         echo"
         <script>
@@ -138,7 +140,7 @@
     }
 
   }
-  }
+}
 
 
 ?>
