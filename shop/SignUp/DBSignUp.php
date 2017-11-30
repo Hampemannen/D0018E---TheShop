@@ -50,7 +50,7 @@
       $result = mysqli_query($conn,$query);
       if($result){
         echo "the query was successful";
-        header( "refresh:1; ./login.php" );
+        header( "refresh:1; ../Login/login.php" );
       }else{
         //echo mysqli_error($conn);
         echo "User already taken";
