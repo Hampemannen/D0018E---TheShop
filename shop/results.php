@@ -80,7 +80,7 @@ if(isset($_SESSION['UserSession'])){
 
               $search_query = $_GET['search'];
 
-             $get_products = "SELECT * FROM products WHERE keywords LIKE '%$search_query%'";
+             $get_products = "SELECT * FROM products WHERE keywords LIKE '%$search_query%' OR name LIKE '%$search_query%'";
              $run_products = mysqli_query($conn, $get_products);
 
              while ($row_products=mysqli_fetch_array($run_products)){
