@@ -24,8 +24,8 @@
 
 
     <ul id="menu">
-      <li><a href="http://localhost/D0018E---TheShop-master/D0018E---TheShop-master/shop/">Home</a></li>
-      <li><a href="http://localhost/D0018E---TheShop-master/D0018E---TheShop-master/shop/Login/login.php">Login</a></li>
+      <li><a href="../index.php">Home</a></li>
+      <li><a href="../Login/login.php">Login</a></li>
       <li><a href="#">Sign up</a></li>
       <li><a href="#">Contact us</a></li>
     </ul>
@@ -42,21 +42,21 @@
       $result = mysqli_query($conn,$query);
       if(mysqli_num_rows($result)==1){
         echo "Username is already taken! Try again duckie!";
-        header( "refresh:3; ./signup.php" );
+        header( "refresh:2; ./signup.php" );
         exit();
       }
-      $query="INSERT INTO `users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`, `Shopping Carts_id`)
-      VALUES ($usernamestring,$password,$name,$address,$email,$ssn,'0','1')";
+      $query="INSERT INTO `users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`)
+      VALUES ($usernamestring,$password,$name,$address,$email,$ssn,'0')";
       $result = mysqli_query($conn,$query);
       if($result){
         echo "the query was successful";
+        header( "refresh:1; ./login.php" );
       }else{
-        echo mysqli_error($conn);
-        echo "Something doesnt work anymore";
+        //echo mysqli_error($conn);
+        echo "User already taken";
+        header( "refresh:1; ./signup.php" );
       }
-      CreateUserCart($username,$conn);
-      echo "HELLO WORLD AGAIN TIRED DUCKIE AWESOME";
-      }
+    }
       ?>
 
 <?php function CreateUserCart($username,$conn){
