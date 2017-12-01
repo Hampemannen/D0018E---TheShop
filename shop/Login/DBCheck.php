@@ -6,7 +6,11 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   $_SESSION["LoginSession"] = 1;
   $_SESSION["UserSession"] = $_POST['username'];
   $_SESSION["id"]=$Userinfo["id"];
+<<<<<<< HEAD
   header("Location: ../index.php"); /* Redirect browser */
+=======
+  header(" ../index.php"); /* Redirect browser */
+>>>>>>> a01b3043457e13763c6ebd7fefd4424e7cfc1cb6
   exit;
 }else{
   echo "Wrong username or password";
