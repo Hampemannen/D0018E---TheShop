@@ -82,11 +82,7 @@
           <img src='admin/images/$image' width='200' height='200'/>
           <p> price: $price crowns </p>
           <p> quantity: $quantity left </p>
-<<<<<<< HEAD
           <form method='get' action='./ShoppingCart/DBAddToCart.php'>
-=======
-          <form method='get' action='./ShoppingCart/DBShoppingCart.php'>
->>>>>>> a01b3043457e13763c6ebd7fefd4424e7cfc1cb6
 		      <input type='submit' name='add_to_cart' value= $id >
         </div>
         </a>
