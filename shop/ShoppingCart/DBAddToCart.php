@@ -4,8 +4,8 @@
 echo "Hellooo  ig uess";
 if(isset($_SESSION['UserSession'])){
   echo $_SESSION['UserSession'];
-  insertProductCart($_SESSION['UserSession'],$_SESSION['id'],$_GET['add_to_cart'],$conn);
-  header("refresh:4 ../ShoppingCart/shoppingcart.php");
+  insertProductCart($_SESSION['UserSession'],$_SESSION['id'],$_GET['productid'],$conn);
+  header("Location: ./shoppingcart.php");
   exit();
 };?>
 

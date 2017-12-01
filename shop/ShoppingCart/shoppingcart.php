@@ -4,20 +4,18 @@
 <?php session_start();
 if(isset($_SESSION['UserSession'])){
   echo $_SESSION['UserSession'];
-  if(isset($_GET['remove_from_cart'])){
-    $quantity=$_GET['remove_from_cart'][0];
-    $productid=$_GET['remove_from_cart'][1];
-    DecreaseQuery_Cart($_SESSION['id'],$productid,$quantity,$conn);
-    IncreaseQuery_Product($productid,$quantity,$conn);
-  }
- } ?>
+}else{
+  echo "Please Login";
+  header("refresh:3 ../Login/login.php");
+  exit();
+} ?>
 
  <html>
 
  <head>
 
  <title>The Shop</title>
- <link rel="stylesheet" href="styles/style.css" media="all" />
+ <link rel="stylesheet" href="../styles/style.css" media="all" />
 
  </head>
 
@@ -85,11 +83,16 @@ if(isset($_SESSION['UserSession'])){
 
              $productid = $row_cart['products_id'];
              $price = $row_cart['price'];
-             $quantity = $row_cart['quantity']; ?>
+             $quantity = $row_cart['quantity'];
+             $product = GetProductInfo($productid,$conn);
+             $productname= $product['name'];
+             $image= $product['image'];
+             ?>
                <div id='each_product'>
-                 <h3><?php echo $productid ?></h3>
+                 <h3><?php echo $productname ?></h3>
+                 <img src='../admin/images/<?php echo $image?>' width='200' height='200'/>
                  <p> price:<?php echo $price ?> crowns </p>
-                 <p> quantity:<?php echo $quantity ?> </p>
+                 <p> number:<?php echo $quantity ?> </p>
                  <form method='get' action='./DBRemoveFromCart.php'>
                    Remove:<br>
                    <input id=<?php echo "removeid".$productid?> type="text" name='remove_from_cart[]' value="1"><br>

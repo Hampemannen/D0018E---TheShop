@@ -57,7 +57,7 @@ function DecreaseQuery_Product($productid,$quantity,$conn){
 }
 
 function GetShoppingCart($userid,$conn){
-  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id =$userid) ";
+  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id =$userid ) ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)==0){
     echo "The user doesnt exist or have an empty shopping cart";
@@ -87,5 +87,12 @@ function DecreaseQuery_Cart($userid,$productid,$quantity,$conn){
       echo "Something doesnt work anymore";
       return FALSE;
     }
+}
+
+function GetProductInfo($productid,$conn){
+  $query= "SELECT * FROM products WHERE ( id = $productid) LIMIT 1 ";
+  $result = mysqli_query($conn,$query);
+  $row = mysqli_fetch_array($result);
+  return $row;
 }
 ?>
