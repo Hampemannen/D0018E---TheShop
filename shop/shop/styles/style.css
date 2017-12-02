@@ -1,0 +1,214 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/*
+Color palette:
+
+500 #607D8B
+50 #ECEFF1
+100 #CFD8DC
+200 #B0BEC5
+300 #90A4AE
+400 #78909C
+500 #607D8B
+600 #546E7A
+700 #455A64
+800 #37474F
+900 #263238
+Black #000000
+White #FFFFFF
+
+*/
+
+
+body{
+  background: #607D8B;
+}
+
+.main_wrapper{
+  width: 1000px;
+  height: auto;
+  margin: auto;
+}
+
+.header_wrapper{
+  width: 1000px;
+  height: 100px;
+}
+
+.content_wrapper{
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  background: #B0BEC5;
+}
+
+
+#product_area{
+  width: 800px;
+  height: 800px;
+  float: right;
+  background: #B0BEC5;
+}
+
+#content_title{
+	background: #90A4AE;
+	color: #263238;
+	font-size:20px;
+	font-family: Palatino Linotype;
+	padding: 20px;
+	text-align: center;
+}
+
+#sidebar{
+  width: 200px;
+  height: 800px;
+  float: left;
+  background: #455A64;
+}
+
+#sidebar_title{
+	background: #37474F;
+	color: #CFD8DC;
+	font-size:25px;
+	font-family: Palatino Linotype;
+	padding: 20px;
+	text-align: center;
+
+}
+
+#categories_list{
+	text-align: center;
+}
+
+#categories_list li{
+	list-style: none;
+	display: block;
+	padding: 20px;
+}
+
+#categories_list a{
+	text-decoration: none;
+	color: #B0BEC5;
+	font-size:15px;
+	font-family: Palatino Linotype;
+	margin: 5px;
+	text-align: center;
+	padding: 20px;
+}
+
+#categories_list a:hover{
+	color:#78909C;
+	font-weight: bolder;
+}
+
+#products{
+	width:780px;
+	text-align: center;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+#each_product{
+	color: #455A64;
+	float: left;
+	margin-left: 25px;
+	padding: 10px;
+	font-family: Palatino Linotype;
+}
+
+#each_product p{
+	font-size: 12px;
+}
+
+#each_product img{
+	border: 4px solid #546E7A;
+}
+
+#footer{
+  width: 1000px;
+  height: 100px;
+  background: #CFD8DC;
+  clear:both;
+}
+
+.menubar{
+  width: 1000px;
+  height: 50px;
+  background: #CFD8DC;
+  color: white;
+
+}
+
+#menu{
+	line-height: 40px;
+	float: left;
+}
+
+#menu li {
+	/*No dots*/
+	list-style: none;
+	/*Displayed in a line instead of under each other*/
+	display: inline;
+}
+
+#menu a {
+	/*Remove underline*/
+	text-decoration: none;
+	color: #37474F;
+	padding: 40px;
+	margin: 5px;
+	font-size:25px;
+	font-family: Palatino Linotype;
+
+}
+
+#menu a:hover{
+		color: #607D8B;
+}
+
+#form{
+	float: right;
+	padding-right: 8px;
+	line-height: 45px;
+}
+
+#form input[type=submit] {
+padding-bottom: 50px;
+}
+
+
+div.loginform {
+	position: relative;
+	top: 150px;
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  padding: 10px;
+}
