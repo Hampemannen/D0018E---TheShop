@@ -81,8 +81,9 @@
           <p> price: <?php echo $price ?> crowns </p>
           <p> quantity:<?php echo $quantity  ?> left </p>
           <form method='get' action='./ShoppingCart/DBAddToCart.php'>
-          <input type='hidden' name='productid' value=<?php echo $id ?><br>
+          <input type='hidden' name='productid' value=<?php echo $id ?>><br>
 		      <input type='submit' name='add_to_cart' value= 'Buy' >
+          </form>
         </div>
         </a>
       <?php ;

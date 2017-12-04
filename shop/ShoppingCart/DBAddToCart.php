@@ -25,8 +25,10 @@ function InsertProductCart($username,$userid,$productid,$conn){
   }
   $resultproducts = mysqli_fetch_array($resultproducts);
 //Check if the User has already put in a order of that product
-  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id =$userid AND products_id=$productid ) ";
+  $query= "SELECT * FROM `shopping carts` WHERE  Users_id =$userid AND products_id=$productid  ";
+  //echo $query;
   $resultshoppingcart = mysqli_query($conn,$query);
+  //echo mysqli_error($resultshoppingcart);
 //If there isnt a order in the shoppingcart then create one
   if(mysqli_num_rows($resultshoppingcart)==0){
     DecreaseQuery_Product($productid,1,$conn);
