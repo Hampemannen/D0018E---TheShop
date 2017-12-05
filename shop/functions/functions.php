@@ -72,9 +72,10 @@
       $price = $row_products['price'];
       $quantity = $row_products['quantity'];
       $category = $row_products['categories_id'];
-      $image = $row_products['image'];?>
+      $image = $row_products['image'];
 
-      <a href='#'>
+
+      echo "<a href='details.php?id=$id'>"; ?>
         <div id='each_product'>
           <h3><?php echo $name ?></h3>
           <img src='./admin/images/<?php echo $image?>' width='200' height='200'/>
@@ -87,6 +88,7 @@
         </div>
         </a>
       <?php ;
+
     }
   }
 
@@ -127,16 +129,19 @@
       $image = $row_categories_products['image'];
 
 
-      echo"
-      <a href='#'>
+      echo "<a href='details.php?id=$id'>"; ?>
         <div id='each_product'>
-          <h3>$name</h3>
-          <img src='admin/images/$image' width='200' height='200'/>
-          <p> price: $price crowns </p>
-          <p> quantity: $quantity left </p>
+          <h3><?php echo $name ?></h3>
+          <img src='./admin/images/<?php echo $image?>' width='200' height='200'/>
+          <p> price: <?php echo $price ?> crowns </p>
+          <p> quantity:<?php echo $quantity  ?> left </p>
+          <form method='get' action='./ShoppingCart/DBAddToCart.php'>
+          <input type='hidden' name='productid' value=<?php echo $id ?>><br>
+		      <input type='submit' name='add_to_cart' value= 'Buy' >
+          </form>
         </div>
         </a>
-      ";
+      <?php ;
     }
 
   }

@@ -42,6 +42,12 @@
       </td>
     </tr>
 
+    <tr align="center">
+      <form action="change_product.php">
+        <input type="submit" value="Continue">
+      </form>
+    </tr>
+
 
   </table>
 

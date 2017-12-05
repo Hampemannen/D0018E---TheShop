@@ -55,6 +55,7 @@ body{
   width: 1000px;
   height: auto;
   margin: auto;
+	background: #455A64;
 }
 
 .header_wrapper{
@@ -150,6 +151,28 @@ body{
 #each_product img{
 	border: 4px solid #546E7A;
 }
+
+#product_details{
+	color: #455A64;
+	margin-left: 125px;
+	padding: 125px;
+	font-family: Palatino Linotype;
+}
+
+#product_details img{
+	border: 6px solid #546E7A;
+}
+
+#desc{
+	padding: 20px;
+	color: #263238;
+}
+
+#buttons{
+	padding: 25px;
+	margin-left: 65px;
+}
+
 
 #footer{
   width: 1000px;
