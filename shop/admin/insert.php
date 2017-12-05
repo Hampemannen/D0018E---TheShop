@@ -19,13 +19,13 @@
 
       <tr>
         <td align="right">Product name:</td>
-        <td><input type="text" name="products_name" required></td>
+        <td><input type="text" name="products_name"></td>
       </tr>
 
       <tr>
         <td align="right">Product category:</td>
         <td>
-          <select name="products_categories" required>
+          <select name="products_categories">
             <option>Select category</option>
 
             <?php
@@ -51,22 +51,22 @@
 
       <tr>
         <td align="right">Product price:</td>
-        <td><input type="text" name="products_price" required></td>
+        <td><input type="text" name="products_price"></td>
       </tr>
 
       <tr>
         <td align="right">Product quantity:</td>
-        <td><input type="text" name="products_quantity" requiered></td>
+        <td><input type="text" name="products_quantity"></td>
       </tr>
 
       <tr>
         <td align="right">Product image:</td>
-        <td><input type="file" name="products_image" requiered></td>
+        <td><input type="file" name="products_image"></td>
       </tr>
 
       <tr>
         <td align="right">Product keywords:</td>
-        <td><input type="text" name="products_keywords" required></td>
+        <td><input type="text" name="products_keywords"></td>
       </tr>
 
       <tr>
@@ -79,10 +79,18 @@
         <td align="left"><input type="reset" value="Reset"></td>
       </tr>
 
+      </form>
+
+      <tr align="center">
+        <td colspan="15">
+          <form method="post" action="./index.html">
+            <input type="submit" value="Back to menu">
+          </form>
+        </td>
+      </tr>
+
 
     </table>
-
-  </form>
 
 </body>
 
@@ -120,5 +128,6 @@
     }
 
   }
+
 
  ?>
