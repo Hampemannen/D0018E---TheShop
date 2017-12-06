@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php include './CartHelper.php'; ?>
+<?php include './OrderHelper.php'; ?>
+<?php include '../ShoppingCart/CartHelper.php' ?>
 <?php include '../functions/functions.php'; ?>
 <?php session_start();
 if(isset($_SESSION['UserSession'])){
@@ -37,15 +38,10 @@ if(isset($_SESSION['UserSession'])){
         <li><a href="../index.php">Home</a></li>
         <li><a href= "../Login/login.php">Login</a></li>
         <li><a href="../SignUp/signup.php">Sign up</a></li>
-        <li><a href="../Order/Orders.php">Orders</a></li>
+        <li><a href="../ShoppingCart/shoppingcart.php">Shopping Cart</a></li>
+        <li><a href="./Orders.php">Orders</a></li>
         <li><a href="#">Contact us</a></li>
       </ul>
-
-      <div id="form">
-        <form method="get" action="../Order/DBCheckout.php" enctype="multipart/form-data">
-          <input type="submit" name="Checkout" value="Checkout">
-        </form>
-      </div>
 
 
      </div>
@@ -63,7 +59,7 @@ if(isset($_SESSION['UserSession'])){
 
            <?php
 
-           getCategories();
+           //getCategories();
 
               ?>
          </ul>
@@ -73,37 +69,44 @@ if(isset($_SESSION['UserSession'])){
 
        <div id="product_area">
 
-         <div id="content_title">Shopping Cart</div>
+         <div id="content_title">Orders</div>
 
          <div id="products">
 
            <?php
-           $shoppingcart=GetShoppingCart($_SESSION['id'],$conn);
-           if($shoppingcart){
-           while ($row_cart=mysqli_fetch_array($shoppingcart)){
 
-             $productid = $row_cart['products_id'];
-             $price = $row_cart['price'];
-             $quantity = $row_cart['quantity'];
+           $orders=GetOrders($_SESSION['id'],$conn);
+
+           if($orders){
+           while ($row_order=mysqli_fetch_array($orders)){
+
+             $totalprice = $row_order['totalprice'];
+             $date = $row_order['date'];
+             $orderid = $row_order['id'];
+
+             $ordercontent = GetOrderContent($orderid,$conn);
+             $row_ordercontent = mysqli_fetch_array($ordercontent);
+             $productid = $row_ordercontent['Products_id'];
+             $quantity = $row_ordercontent['quantity'];
+             $price = $row_ordercontent['price'];
+
              $product = GetProductInfo($productid,$conn);
              $product = mysqli_fetch_array($product);
              $productname= $product['name'];
              $image= $product['image'];
              ?>
+
                <div id='each_product'>
-                 <h3><?php echo $productname ?></h3>
-                 <img src='../admin/images/<?php echo $image?>' width='200' height='200'/>
-                 <p> price:<?php echo $price ?> crowns </p>
-                 <p> number:<?php echo $quantity ?> </p>
-                 <form method='get' action='./DBRemoveFromCart.php'>
-                   Remove:<br>
-                   <input id=<?php echo "removeid".$productid?> type="text" name='remove_from_cart[]' value="1"><br>
-                   <input id=<?php echo "id".$productid?> type="hidden" name='remove_from_cart[]' value=<?php echo $productid?>><br>
-                   <input type='submit' name='id' value= 'Remove' >
-                </form>
+                 <h3>Order ID:<?php echo $orderid ?></h3>
+                  <a href='./OrderDetails.php?orderid=<?php echo $orderid?>'>
+                   <p> Date:<?php echo $date ?> </p>
+                   <p> price:<?php echo $totalprice ?> crowns </p>
+                  </a>
                </div>
+
            <?php ; }
-          } ?>
+           } ?>
+
 
          </div>
 

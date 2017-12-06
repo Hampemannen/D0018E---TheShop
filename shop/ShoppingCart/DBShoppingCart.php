@@ -1,4 +1,4 @@
-<?php include './Helper.php' ?>
+<?php include './CartHelper.php' ?>
 <?php include '../functions/functions.php'; ?>
 <?php session_start();
 echo "Hellooo  ig uess";
@@ -10,7 +10,7 @@ if(isset($_SESSION['UserSession'])){
 
 <?php
 
-function InsertProductCart($username,$userid,$productid,$conn){
+/*function InsertProductCart($username,$userid,$productid,$conn){
   //Format username
   $usernamestring="'".$username."'";
   $productidstring="'".$productid."'";
@@ -40,6 +40,6 @@ function InsertProductCart($username,$userid,$productid,$conn){
     UpdateQuery_Cart($resultproducts['price'],$quantity,$productid,$userid,$conn);
     return True;
   }
-}
+}*/
 
 ?>
