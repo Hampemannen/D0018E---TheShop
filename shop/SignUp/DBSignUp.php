@@ -38,23 +38,23 @@
       $email="'".$email."'";
       $ssn="'".$ssn."'";
       //Find the User in the DB and its corresponding password
-      $query= "SELECT user_id FROM users WHERE ( user_id =$usernamestring) ";
+      $query= "SELECT user_id FROM users WHERE ( user_id =$usernamestring) LIMIT 1 ";
       $result = mysqli_query($conn,$query);
       if(mysqli_num_rows($result)==1){
         echo "Username is already taken! Try again duckie!";
-        header( "refresh:2; ./signup.php" );
+        header( "refresh:3; ./signup.php" );
         exit();
       }
       $query="INSERT INTO `users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`)
       VALUES ($usernamestring,$password,$name,$address,$email,$ssn,'0')";
       $result = mysqli_query($conn,$query);
       if($result){
-        echo "the query was successful";
-        header( "refresh:1; ../Login/login.php" );
+        echo "the Singup was successful";
+        header( "refresh:3; ../Login/login.php" );
       }else{
         //echo mysqli_error($conn);
-        echo "User already taken";
-        header( "refresh:1; ./signup.php" );
+        echo "Something went wrong when singing up";
+        header( "refresh:3; ./signup.php" );
       }
     }
       ?>

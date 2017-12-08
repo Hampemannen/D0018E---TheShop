@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<?php include 'functions/functions.php'; ?>
+<?php
+include 'functions/functions.php';
+include './Review/ReviewHelper.php'; ?>
 <?php session_start();
 if(isset($_SESSION['UserSession'])){
   echo $_SESSION['UserSession'];
@@ -78,10 +80,9 @@ if(isset($_SESSION['UserSession'])){
            <?php
 
            if(isset($_GET['id'])){
-
-           $product_id = $_GET['id'];
-           $get_products = "SELECT * FROM products WHERE id='$product_id'";
-           $run_products = mysqli_query($conn, $get_products);
+             $product_id = $_GET['id'];
+             $get_products = "SELECT * FROM products WHERE id='$product_id'";
+             $run_products = mysqli_query($conn, $get_products);
 
            while ($row_products=mysqli_fetch_array($run_products)){
 
@@ -91,11 +92,13 @@ if(isset($_SESSION['UserSession'])){
              $quantity = $row_products['quantity'];
              $image = $row_products['image'];
              $description = $row_products['description'];
+             $averagegrade = $row_products['average_grade'];
 
              ?>
 
                <div id='product_details'>
                  <h3><?php echo $name ?></h3>
+                 <h2>Average Rating: <?php echo $averagegrade ?> / 7</h2>
                  <img src='./admin/images/<?php echo $image?>' width='250' height='250'/>
                  <p> price: <?php echo $price ?> crowns </p>
                  <p> quantity:<?php echo $quantity  ?> left </p>
@@ -109,27 +112,71 @@ if(isset($_SESSION['UserSession'])){
                  </form>
                  <button type="button" onclick="javascript:history.back()">Back</button>
                </div>
-               </div>
-             <?php ;
-            }
+               <form action="./details.php?id=<?php echo $id ?>" method="POST"  id = "reviewform">
+                     <h1>Product Review</h1>
+                     Product Comment:
+                     <textarea name="products_comment" cols="25" rows="5" id = "reviewform"></textarea>
+                     <input type="submit" name="review_post" value="Review product"></td>
+                   <select name="grade" form="reviewform">
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                   </select>
+             </form>
 
+             <?php }
+            /* If something is clicked (submit), Post method */
+            if(isset($_POST['review_post'])){
+              /* Getting data for product from table fields */
+              $username = $_SESSION['UserSession'];
+              $username = "'".$username."'";
+              $userid = $_SESSION['id'];
+              if(!HasAlreadyReviewed($userid,$id,$conn)){
+                $products_grade = $_POST['grade'];
+                $products_comment = $_POST['products_comment'];
+                $commentstring="'".$products_comment."'";
+                $query = "INSERT INTO  `reviews` (`rating`, `comment`, `products_id`, `Users_id`,`User_name`)
+                          VALUES ($products_grade, $commentstring, $id, $userid,$username)";
+                $result = mysqli_query($conn,$query);
+                //echo mysqli_error($conn);
+                UpdateQuery_Grade($id,$products_grade,$conn);
+              }else{
+                echo"<script>
+                  alert('You have already reviewed this product');
+                </script>";
+              }
           }
-
-            ?>
-
-
+        }?>
        </div>
+       <div>
+         <table style="width:100%">
+           <tr>
+             <th>User</th>
+             <th>Comment</th>
+             <th>Grade</th>
+           </tr>
+           <?php
+           $reviews = GetproductReviews($product_id,$conn);
+           while($row=mysqli_fetch_array($reviews)){?>
 
+             <tr>
+               <td><?php echo $row['User_name'];?></td>
+               <td><?php echo $row['comment'];?></td>
+               <td><?php echo $row['rating'];?></td>
+             </tr>
 
+           <?php }
+            ?>
+          </table>
+       </div>
       </div>
       <!-- Content wrapper End -->
-
       <div id="footer">Footer</div>
-
-
    </div>
    <!-- Main content End -->
-
-
  </body>
  </html>
