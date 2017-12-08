@@ -83,7 +83,7 @@
 
       <tr align="center">
         <td colspan="15">
-          <form method="post" action="./index.html">
+          <form method="post" action="./index.php">
             <input type="submit" value="Back to menu">
           </form>
         </td>
@@ -124,6 +124,17 @@
     if($insert_product){
       echo "<script>
         alert('Product successfully inserted.');
+      </script>";
+
+      echo "<script>
+        window.open('index.php','_self')
+      </script>
+      ";
+    }
+
+    if(!$insert_product){
+      echo "<script>
+        alert('Please fill in all forms.');
       </script>";
     }
 
