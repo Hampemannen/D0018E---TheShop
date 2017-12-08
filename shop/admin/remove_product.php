@@ -12,7 +12,7 @@ $submit = mysqli_query($conn, $delete_product);
 
 if($submit){
   echo "<script>
-    confirm('Are you sure you want to delete the selected product?')
+    alert('Product was successfully deleted.')
     </script>";
 
   echo "<script>
@@ -20,6 +20,15 @@ if($submit){
   </script>";
 
 }
+
+echo "<script>
+  alert('Make sure to delete the orders containing the selected product before deleting')
+  </script>";
+
+  echo "<script>
+    window.open('select_product.php','_self')
+  </script>";
+
 }
 
  ?>
