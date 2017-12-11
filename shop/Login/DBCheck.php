@@ -6,6 +6,7 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   $_SESSION["LoginSession"] = 1;
   $_SESSION["UserSession"] = $_POST['username'];
   $_SESSION["id"]=$Userinfo["id"];
+  $_SESSION["IsAdmin"]=$Userinfo["IsAdmin"];
   header("Location: ../index.php"); /* Redirect browser */
   exit;
 }else{
@@ -104,7 +105,7 @@ function CheckCredentials($username,$password,$conn){
     //Format username
     $username="'".$username."'";
     //Find the User in the DB
-    $user_id = "SELECT user_id,id FROM users WHERE ( user_id =$username ) ";
+    $user_id = "SELECT user_id,id,IsAdmin FROM users WHERE ( user_id =$username ) ";
     $result = mysqli_query($conn,$user_id);
     if(mysqli_num_rows($result)==1){
       $result=mysqli_fetch_array($result);

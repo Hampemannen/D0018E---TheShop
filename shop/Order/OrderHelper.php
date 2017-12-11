@@ -16,11 +16,11 @@ function InsertOrder($username,$userid,$conn){
 
 function CalculateCost($shoppingcart){
   $totalcost = 0;
-  echo gettype($shoppingcart);
+  //echo gettype($shoppingcart);
   while($shoppingcart=mysqli_fetch_array($shoppingcart)){
     $totalcost += $shoppingcart['price'];
     };
-    echo $totalcost;
+    //echo $totalcost;
   return $totalcost;
 }
 

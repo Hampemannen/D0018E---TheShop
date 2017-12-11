@@ -35,7 +35,6 @@
       <form action = "DBSignUp.php" method = "post">
          <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
          <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-         <label>Re-enter password  :</label><input type = "password_re" name = "password" class = "box" /><br/><br />
          <label>Name  :</label><input type = "text" name = "name" class = "box" /><br/><br />
          <label>address  :</label><input type = "text" name = "address" class = "box" /><br/><br />
          <label>email  :</label><input type = "text" name = "email" class = "box" /><br/><br />

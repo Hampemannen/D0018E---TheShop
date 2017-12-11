@@ -1,4 +1,14 @@
 <!DOCTYPE>
+<?php
+session_start();
+if(isset($_SESSION['UserSession']) & $_SESSION["IsAdmin"]==1){
+  echo $_SESSION['UserSession'];
+}else{
+  echo "Please Login as Admin";
+  header("refresh:3 ../Login/login.php");
+  exit();
+} ?>
+
 
 <html>
 <head>

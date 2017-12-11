@@ -1,6 +1,7 @@
 <!DOCTYPE>
 
 <?php include 'connection.php'; ?>
+<?php include '../ShoppingCart/CartHelper.php'; ?>
 
 <html>
   <head>
@@ -162,6 +163,7 @@
 
     /* Inserting data to the DB */
     $update_product = mysqli_query($conn, $get_product);
+
 
     if($update_product){
 

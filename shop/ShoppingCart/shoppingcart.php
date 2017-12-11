@@ -78,8 +78,8 @@ if(isset($_SESSION['UserSession'])){
          <div id="products">
 
            <?php
+           if(UpdatePricesCart($_SESSION['id'],$conn)){
            $shoppingcart=GetShoppingCart($_SESSION['id'],$conn);
-           if($shoppingcart){
            while ($row_cart=mysqli_fetch_array($shoppingcart)){
 
              $productid = $row_cart['products_id'];

@@ -152,4 +152,26 @@ function GetProductInfo($productid,$conn){
   //$row = mysqli_fetch_array($result);
   return $result;
 }
+
+//
+function UpdatePricesCart($userid,$conn){
+  $query = "SELECT `id`,`products_id`,`quantity` FROM `shopping carts` WHERE  Users_id =$userid ";
+  $result = mysqli_query($conn,$query);
+  if($result){
+  while($row = mysqli_fetch_array($result)){
+    $productid = $row['products_id'];
+    $product = GetProductInfo($productid,$conn);
+    $product = mysqli_fetch_array($product);
+    $newprice = $row['quantity'] * $product['price'] ;
+
+    $query="UPDATE `shopping carts`
+            SET price= $newprice
+            WHERE (products_id = $productid AND Users_id = $userid) ";
+    $updateresult = mysqli_query($conn,$query);
+  }
+  return TRUE;
+}else{
+  return FALSE;
+}
+}
 ?>

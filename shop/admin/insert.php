@@ -116,7 +116,7 @@
 
     move_uploaded_file($products_image_tmp, "images/$products_image");
 
-    $get_product ="INSERT INTO products (name, quantity, price, categories_id, keywords, description, image) VALUES('$products_name','$products_quantity','$products_price','$products_categories', '$products_keywords', '$products_description', '$products_image' )";
+    $get_product ="INSERT INTO products (name, quantity, price, categories_id, keywords, description, image, average_grade, times_graded, sum_grades) VALUES('$products_name','$products_quantity','$products_price','$products_categories', '$products_keywords', '$products_description', '$products_image',0,0,0 )";
 
     /* Inserting data to the DB */
     $insert_product = mysqli_query($conn, $get_product);
