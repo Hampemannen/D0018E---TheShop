@@ -27,15 +27,14 @@
         <li><a href="../index.php">Home</a></li>
         <li><a href="#">Login</a></li>
         <li><a href="../SignUp/signup.php">Sign up</a></li>
-        <li><a href="#">Contact us</a></li>
       </ul>
 
 <?php
   if (!isset($_SESSION['UserSession'])) {?>
-    <div id="loginform" class="loginform" >
+    <div id="signform" class="loginform" >
       <form action = "DBCheck.php" method = "post">
-         <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-         <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+         <label>Username:</label><input type = "text" name = "username" class = "box"/><br /><br />
+         <label>Password:</label><input type = "password" name = "password" class = "box" /><br/><br />
          <input type = "submit" value = " Submit "/><br />
       </form>
     </div>
@@ -62,7 +61,7 @@
 
        <div id="sidebar">
 
-         <div id="sidebar_title">Categories</div>
+         <!--<div id="sidebar_title">Categories</div>
 
          <ul id="categories_list">
 
@@ -75,12 +74,13 @@
 
          </ul>
 
-
+       -->
        </div>
 
        <div id="product_area">
 
-         <div id="content_title">All products</div>
+         <div id="content_title">Login</div>
+
 
          <ul id="products_list">
 
@@ -92,7 +92,13 @@
       </div>
       <!-- Content wrapper End -->
 
-      <div id="footer">Footer</div>
+      <div id="footer">
+            <h2>About us</h2>
+            <p>Address: Lulea tekniska universitet, 971 87 Luleå, Sweden</p>
+            <p>Department of Computer Science, Electrical and Space Engineering<p>
+            <p><a href="mailto:hamhol-5@ltu.se?subject=feedback">Contact us by email</a></p>
+            <p>Copyright &copy; Hampus Holmström, Elias Groth 2017</p>
+      </div>
 
 
    </div>
