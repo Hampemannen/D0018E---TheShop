@@ -178,12 +178,26 @@ body{
   width: 1000px;
   height: 100px;
   background: #CFD8DC;
+	text-align: center;
   clear:both;
+}
+
+#footer p{
+	color: #37474F;
+	text-decoration: none;
+	font-size:12px;
+	font-family: Palatino Linotype;
+}
+
+#footer h2{
+	color: #37474F;
+	font-family: Palatino Linotype;
+
 }
 
 .menubar{
   width: 1000px;
-  height: 50px;
+  height: 70px;
   background: #CFD8DC;
   color: white;
 
@@ -195,19 +209,21 @@ body{
 }
 
 #menu li {
+	line-height: 60px;
 	/*No dots*/
 	list-style: none;
 	/*Displayed in a line instead of under each other*/
 	display: inline;
+	color: #37474F;
 }
 
 #menu a {
 	/*Remove underline*/
 	text-decoration: none;
 	color: #37474F;
-	padding: 40px;
+	padding: 20px;
 	margin: 5px;
-	font-size:25px;
+	font-size:20px;
 	font-family: Palatino Linotype;
 
 }
@@ -219,12 +235,25 @@ body{
 #form{
 	float: right;
 	padding-right: 8px;
-	line-height: 45px;
+	line-height: 30px;
+}
+
+#form form{
+	padding-right: 8px;
+	line-height: 15px;
+}
+
+#form li{
+	/*Displayed in a line instead of under each other*/
+	display: inline;
+	color: #37474F;
 }
 
 #form input[type=submit] {
 padding-bottom: 50px;
 }
+
+
 
 
 div.loginform {
