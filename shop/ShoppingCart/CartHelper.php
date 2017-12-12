@@ -91,6 +91,18 @@ function GetShoppingCart($userid,$conn){
     return $result;
   }
 }
+
+function GetProductInCart($userid,$productid,$conn){
+  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id = $userid AND products_id = $productid) ";
+  $result = mysqli_query($conn,$query);
+  if(mysqli_num_rows($result)==0){
+    return False;
+  }else{
+    //$shoppingcart = mysqli_fetch_array($result);
+    return $result;
+  }
+}
+
 function DecreaseQuery_Cart($userid,$productid,$quantity,$conn){
     //Get the price for the product
     $query= "SELECT price FROM products WHERE ( id = $productid) LIMIT 1 ";
@@ -132,17 +144,19 @@ function InsertProductCart($username,$userid,$productid,$conn){
   $resultshoppingcart = mysqli_query($conn,$query);
   //echo mysqli_error($resultshoppingcart);
   //If there isnt a order in the shoppingcart then create one
-  if(mysqli_num_rows($resultshoppingcart)==0){
+  if(mysqli_num_rows($resultshoppingcart)==0 and $resultproducts['quantity']>0){
     DecreaseQuery_Product($productid,1,$conn);
     InsertQuery_Cart($resultproducts['price'],1,$productid,$userid,$conn);
     return True;
-  }else{
+  }else if ($resultproducts['quantity']>0){
     //otherwise update the current information of that order
     $resultshoppingcart = mysqli_fetch_array($resultshoppingcart);
     $quantity=$resultshoppingcart['quantity'] + 1;
     DecreaseQuery_Product($productid,1,$conn);
     UpdateQuery_Cart($resultproducts['price'],$quantity,$productid,$userid,$conn);
     return True;
+  }else{
+    return FALSE;
   }
 }
 
