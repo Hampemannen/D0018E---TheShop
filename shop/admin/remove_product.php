@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 
 $remove_id = $_GET['id'];
 
-$delete_product = "DELETE FROM products WHERE id='$remove_id'";
+$delete_product = "DELETE FROM Products WHERE id='$remove_id'";
 
 $submit = mysqli_query($conn, $delete_product);
 

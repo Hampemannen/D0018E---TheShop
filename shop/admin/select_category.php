@@ -26,7 +26,7 @@
 
     <?php
 
-    $get_categories = "SELECT * FROM categories";
+    $get_categories = "SELECT * FROM Categories";
     $run_categories = mysqli_query($conn, $get_categories);
 
 

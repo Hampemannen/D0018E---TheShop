@@ -38,14 +38,14 @@
       $email="'".$email."'";
       $ssn="'".$ssn."'";
       //Find the User in the DB and its corresponding password
-      $query= "SELECT user_id FROM users WHERE ( user_id =$usernamestring) LIMIT 1 ";
+      $query= "SELECT user_id FROM Users WHERE ( user_id =$usernamestring) LIMIT 1 ";
       $result = mysqli_query($conn,$query);
       if(mysqli_num_rows($result)==1){
         echo "Username is already taken! Try again duckie!";
         header( "refresh:3; ./signup.php" );
         exit();
       }
-      $query="INSERT INTO `users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`)
+      $query="INSERT INTO `Users`(`user_id`, `password`, `name`, `address`, `email`, `ssn`, `IsAdmin`)
       VALUES ($usernamestring,$password,$name,$address,$email,$ssn,'0')";
       $result = mysqli_query($conn,$query);
       if($result){

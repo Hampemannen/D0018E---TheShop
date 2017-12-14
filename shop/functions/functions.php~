@@ -1,7 +1,7 @@
 <?php
 
   //Establish connection
-  $servername = "utbweb.its.ltu.se";
+  $servername = "utbweb.its.ltu";
   $username = "eligro-4";
   $password = "eligro-4";
   $dbname = "eligro4db";
@@ -13,7 +13,7 @@
 
     global $conn;
 
-    $get_categories = 'SELECT * FROM Categories';
+    $get_categories = 'SELECT * FROM categories';
     $run_categories = mysqli_query($conn, $get_categories);
 
     while ($row_categories=mysqli_fetch_array($run_categories)){
@@ -30,11 +30,11 @@
     //Format username
     $usernamestring="'".$username."'";
     $productidstring="'".$productid."'";
-    $query= "SELECT * FROM Products WHERE ( id =$productidstring) ";
+    $query= "SELECT * FROM products WHERE ( id =$productidstring) ";
 
     $resultproducts = mysqli_query($conn,$query);
     $resultproducts = mysqli_fetch_array($resultproducts);
-    $query= "SELECT * FROM Shopping carts WHERE ( User_id =$usernamestring And products_id=$productidstring ) ";
+    $query= "SELECT * FROM shopping carts WHERE ( User_id =$usernamestring And products_id=$productidstring ) ";
 
     /*$resultshoppingcart = mysqli_query($conn,$query);
     $resultshoppingcart = mysqli_fetch_array($resultshoppingcart);
@@ -62,7 +62,7 @@
 
     global $conn;
 
-    $get_products = 'SELECT * FROM Products';
+    $get_products = 'SELECT * FROM products';
     $run_products = mysqli_query($conn, $get_products);
 
     while ($row_products=mysqli_fetch_array($run_products)){
@@ -116,7 +116,7 @@
 
     global $conn;
 
-    $get_categories_products = "SELECT * FROM Products WHERE categories_id='$id'";
+    $get_categories_products = "SELECT * FROM products WHERE categories_id='$id'";
     $run_categories_products = mysqli_query($conn, $get_categories_products);
 
     while ($row_categories_products=mysqli_fetch_array($run_categories_products)){

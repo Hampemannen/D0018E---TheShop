@@ -25,7 +25,7 @@
           if(isset($_GET['id'])){
 
           $category_id = $_GET['id'];
-          $get_categories = "SELECT * FROM categories WHERE id='$category_id'";
+          $get_categories = "SELECT * FROM Categories WHERE id='$category_id'";
           $run_categories = mysqli_query($conn, $get_categories);
 
           $row_categories=mysqli_fetch_array($run_categories);
@@ -79,7 +79,7 @@
     /* Getting data for categories from table fields */
     $categories_name = $_POST['categories_name'];
 
-    $get_categories = "UPDATE categories SET name='$categories_name' WHERE id='$id'";
+    $get_categories = "UPDATE Categories SET name='$categories_name' WHERE id='$id'";
 
     /* Inserting data to the DB */
     $update_categories = mysqli_query($conn, $get_categories);

@@ -26,7 +26,7 @@ function CalculateCost($shoppingcart){
 
 function InsertQuery_Order($userid,$totalcost,$conn){;
 //mysqli_begin_transaction($conn);
-  $query="INSERT INTO `orders`(`date`,totalprice, Users_id)
+  $query="INSERT INTO `Orders`(`date`,totalprice, Users_id)
           VALUES (now(),$totalcost,$userid)";
   $result = mysqli_query($conn,$query);
   echo mysqli_error($conn);
@@ -49,7 +49,7 @@ function InsertQuery_OrderContent($shoppingcart,$orderid,$conn){
     $price = $row['price'];
     $quantity = $row['quantity'];
     //echo "HELLO IM IN THE LOOP";
-    $query="INSERT INTO `ordercontent`(order_id,Products_id, price, quantity )
+    $query="INSERT INTO `OrderContent`(order_id,Products_id, price, quantity )
             VALUES ($orderid,$productid,$price,$quantity)";
     echo $query;
     $result = mysqli_query($conn,$query);
@@ -79,7 +79,7 @@ function GetSpecificOrder($orderid,$conn){
 }
 
 function GetOrderContent($orderid,$conn){
-  $query= "SELECT * FROM `ordercontent` WHERE ( order_id =$orderid ) ";
+  $query= "SELECT * FROM `OrderContent` WHERE ( order_id =$orderid ) ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)==0){
     return False;

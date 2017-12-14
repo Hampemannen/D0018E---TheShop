@@ -8,7 +8,7 @@ if(isset($_SESSION['UserSession'])){
   //$Cart=GetShoppingCart($_SESSION['id'],$conn);
   //$Cart=mysqli_fetch_array($Cart);
   EmptyQuery_Cart($_SESSION['id'],$conn);
-  header("Location: ../Shoppingcart/shoppingcart.php");
+  header("Location: ../ShoppingCart/shoppingcart.php");
   exit();
 }else{
   echo "Please Login";

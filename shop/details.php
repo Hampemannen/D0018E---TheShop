@@ -3,10 +3,7 @@
 <?php
 include 'functions/functions.php';
 include './Review/ReviewHelper.php'; ?>
-<?php session_start();
-if(isset($_SESSION['UserSession'])){
-  echo $_SESSION['UserSession'];
-};?>
+<?php session_start(); ?>
 
  <html>
 
@@ -20,7 +17,7 @@ if(isset($_SESSION['UserSession'])){
  <body>
 
    <!-- Main content Start -->
-   <div class="main_wrapper">
+   <div class="detailed_wrapper">
 
      <!-- Header Start -->
      <div class="header_wrapper">
@@ -33,10 +30,18 @@ if(isset($_SESSION['UserSession'])){
 
       <ul id="menu">
         <li><a href="index.php">Home</a></li>
+        <?php if(!isset($_SESSION['UserSession'])){ ?>
         <li><a href= "./Login/login.php">Login</a></li>
         <li><a href="./SignUp/signup.php">Sign up</a></li>
+      <?php }
+      if(isset($_SESSION['UserSession'])){ ?>
         <li><a href="./ShoppingCart/shoppingcart.php">Shopping Cart</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="./Order/Orders.php">Orders</a></li>
+    <?php 
+        if(($_SESSION['IsAdmin']==1)){ ?>
+        <li><a href="admin/index.php">Admin</a></li>
+      <?php } 
+	}?>
       </ul>
 
       <div id="form">
@@ -44,6 +49,15 @@ if(isset($_SESSION['UserSession'])){
           <input type="text" name="search" placeholder="Search product..">
           <input type="image"  src="images/search.png" name="submit" value="Search">
         </form>
+        <?php
+            if(isset($_SESSION['UserSession'])){ ?>
+            <li>Logged in as: <?php echo $_SESSION['UserSession']; ?></li>
+            <li>
+              <button onclick="location.href='./Login/logout.php'" type="button">
+                Logout
+              </button>
+          </li>
+          <?php } ?>
       </div>
 
 
@@ -51,9 +65,9 @@ if(isset($_SESSION['UserSession'])){
      <!-- Menubar End -->
 
      <!-- Content wrapper Start -->
-     <div class="content_wrapper">
+     <div class="detailed_wrapper">
 
-       <div id="sidebar">
+       <div id="detailedbar">
 
          <div id="sidebar_title">Categories</div>
 
@@ -71,17 +85,13 @@ if(isset($_SESSION['UserSession'])){
 
        </div>
 
-       <div id="product_area">
-
-         <div id="content_title">Products</div>
-
-
+       <div id="detailed">
 
            <?php
 
            if(isset($_GET['id'])){
              $product_id = $_GET['id'];
-             $get_products = "SELECT * FROM products WHERE id='$product_id'";
+             $get_products = "SELECT * FROM Products WHERE id='$product_id'";
              $run_products = mysqli_query($conn, $get_products);
 
            while ($row_products=mysqli_fetch_array($run_products)){
@@ -111,7 +121,7 @@ if(isset($_SESSION['UserSession'])){
                  <input type='submit' name='add_to_cart' value= 'Buy' >
                  </form>
                  <button type="button" onclick="javascript:history.back()">Back</button>
-               </div>
+               
                <form action="./details.php?id=<?php echo $id ?>" method="POST"  id = "reviewform">
                      <h1>Product Review</h1>
                      Product Comment:
@@ -127,10 +137,11 @@ if(isset($_SESSION['UserSession'])){
                      <option value="7">7</option>
                    </select>
              </form>
+		</div>
 
              <?php }
             /* If something is clicked (submit), Post method */
-            if(isset($_POST['review_post'])){
+            if(isset($_POST['review_post']) & isset($_SESSION['UserSession'])){
               /* Getting data for product from table fields */
               $username = $_SESSION['UserSession'];
               $username = "'".$username."'";
@@ -139,7 +150,7 @@ if(isset($_SESSION['UserSession'])){
                 $products_grade = $_POST['grade'];
                 $products_comment = $_POST['products_comment'];
                 $commentstring="'".$products_comment."'";
-                $query = "INSERT INTO  `reviews` (`rating`, `comment`, `products_id`, `Users_id`,`User_name`)
+                $query = "INSERT INTO  `Reviews` (`rating`, `comment`, `products_id`, `Users_id`,`User_name`)
                           VALUES ($products_grade, $commentstring, $id, $userid,$username)";
                 $result = mysqli_query($conn,$query);
                 //echo mysqli_error($conn);
@@ -149,8 +160,12 @@ if(isset($_SESSION['UserSession'])){
                   alert('You have already reviewed this product');
                 </script>";
               }
-          }
-        }?>
+            }else if(!isset($_SESSION['UserSession']) & isset($_POST['review_post'])){
+                echo"<script>
+                  alert('You must be logged in to review this product');
+                </script>";
+	    }
+	}?>
        </div>
        <div>
          <table style="width:100%">
@@ -175,7 +190,13 @@ if(isset($_SESSION['UserSession'])){
        </div>
       </div>
       <!-- Content wrapper End -->
-      <div id="footer">Footer</div>
+      <div id="footer">
+            <h2>About us</h2>
+            <p>Address: Lulea tekniska universitet, 971 87 Luleå, Sweden</p>
+            <p>Department of Computer Science, Electrical and Space Engineering<p>
+            <p><a href="mailto:hamhol-5@ltu.se?subject=feedback">Contact us by email</a></p>
+            <p>Copyright &copy; Hampus Holmström, Elias Groth 2017</p>
+      </div>
    </div>
    <!-- Main content End -->
  </body>

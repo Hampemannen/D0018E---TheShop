@@ -30,7 +30,7 @@
 
             <?php
 
-              $get_categories = 'SELECT * FROM categories';
+              $get_categories = 'SELECT * FROM Categories';
               $run_categories = mysqli_query($conn, $get_categories);
 
               while ($row_categories=mysqli_fetch_array($run_categories)){
@@ -116,7 +116,7 @@
 
     move_uploaded_file($products_image_tmp, "images/$products_image");
 
-    $get_product ="INSERT INTO products (name, quantity, price, categories_id, keywords, description, image, average_grade, times_graded, sum_grades) VALUES('$products_name','$products_quantity','$products_price','$products_categories', '$products_keywords', '$products_description', '$products_image',0,0,0 )";
+    $get_product ="INSERT INTO Products (name, quantity, price, categories_id, keywords, description, image, average_grade, times_graded, sum_grades) VALUES('$products_name','$products_quantity','$products_price','$products_categories', '$products_keywords', '$products_description', '$products_image',0,0,0 )";
 
     /* Inserting data to the DB */
     $insert_product = mysqli_query($conn, $get_product);

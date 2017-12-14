@@ -35,10 +35,11 @@
       if(isset($_SESSION['UserSession'])){ ?>
         <li><a href="./ShoppingCart/shoppingcart.php">Shopping Cart</a></li>
         <li><a href="./Order/Orders.php">Orders</a></li>
-    <?php }
-        if(isset($_SESSION['IsAdmin'])){ ?>
+    <?php 
+        if(($_SESSION['IsAdmin']==1)){ ?>
         <li><a href="admin/index.php">Admin</a></li>
-      <?php } ?>
+      <?php } 
+	}?>
       </ul>
 
       <div id="form">
@@ -50,7 +51,7 @@
             if(isset($_SESSION['UserSession'])){ ?>
             <li>Logged in as: <?php echo $_SESSION['UserSession']; ?></li>
             <li>
-              <button onclick="location.href='./login/logout.php'" type="button">
+              <button onclick="location.href='./Login/logout.php'" type="button">
                 Logout
               </button>
           </li>

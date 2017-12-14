@@ -26,7 +26,7 @@
           if(isset($_GET['id'])){
 
           $product_id = $_GET['id'];
-          $get_products = "SELECT * FROM products WHERE id='$product_id'";
+          $get_products = "SELECT * FROM Products WHERE id='$product_id'";
           $run_products = mysqli_query($conn, $get_products);
 
           $row_products=mysqli_fetch_array($run_products);
@@ -43,7 +43,7 @@
 
 
 
-            $get_categories = "SELECT * FROM categories WHERE id='$categories_id'";
+            $get_categories = "SELECT * FROM Categories WHERE id='$categories_id'";
             $run_categories = mysqli_query($conn, $get_categories);
 
             $row_categories=mysqli_fetch_array($run_categories);
@@ -76,7 +76,7 @@
 
 
 
-              $get_categories = 'SELECT * FROM categories';
+              $get_categories = 'SELECT * FROM Categories';
               $run_categories = mysqli_query($conn, $get_categories);
 
               while ($row_categories=mysqli_fetch_array($run_categories)){
@@ -159,7 +159,7 @@
 
     move_uploaded_file($products_image_tmp, "images/$products_image");
 
-    $get_product = "UPDATE products SET name='$products_name', categories_id='$products_categories', price='$products_price', quantity='$products_quantity', keywords='$products_keywords', description='$products_description', image='$products_image' WHERE id='$id'";
+    $get_product = "UPDATE Products SET name='$products_name', categories_id='$products_categories', price='$products_price', quantity='$products_quantity', keywords='$products_keywords', description='$products_description', image='$products_image' WHERE id='$id'";
 
     /* Inserting data to the DB */
     $update_product = mysqli_query($conn, $get_product);

@@ -1,10 +1,10 @@
 <?php
 
 //Establish connection
-$servername = "localhost";
-$username = "root";
-$password = "hejhej123";
-$dbname = "e-shop";
+$servername = "utbweb.its.ltu.se";
+$username = "eligro-4";
+$password = "eligro-4";
+$dbname = "eligro4db";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 

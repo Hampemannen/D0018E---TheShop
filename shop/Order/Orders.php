@@ -3,9 +3,7 @@
 <?php include '../ShoppingCart/CartHelper.php' ?>
 <?php include '../functions/functions.php'; ?>
 <?php session_start();
-if(isset($_SESSION['UserSession'])){
-  echo $_SESSION['UserSession'];
-}else{
+if(!isset($_SESSION['UserSession'])){
   echo "Please Login";
   header("refresh:3 ../Login/login.php");
   exit();
@@ -34,13 +32,20 @@ if(isset($_SESSION['UserSession'])){
      <!-- Menubar Start -->
      <div class="menubar">
 
-      <ul id="menu">
+	<ul id="menu">
         <li><a href="../index.php">Home</a></li>
+        <?php if(!isset($_SESSION['UserSession'])){ ?>
         <li><a href= "../Login/login.php">Login</a></li>
         <li><a href="../SignUp/signup.php">Sign up</a></li>
+      <?php }
+      if(isset($_SESSION['UserSession'])){ ?>
         <li><a href="../ShoppingCart/shoppingcart.php">Shopping Cart</a></li>
         <li><a href="./Orders.php">Orders</a></li>
-        <li><a href="#">Contact us</a></li>
+    <?php 
+        if(($_SESSION['IsAdmin']==1)){ ?>
+        <li><a href="../admin/index.php">Admin</a></li>
+      <?php } 
+	}?>
       </ul>
 
 
@@ -52,17 +57,7 @@ if(isset($_SESSION['UserSession'])){
 
        <div id="sidebar">
 
-         <div id="sidebar_title">Categories</div>
-
-         <ul id="categories_list">
-
-
-           <?php
-
-           //getCategories();
-
-              ?>
-         </ul>
+         
 
 
        </div>
@@ -114,7 +109,13 @@ if(isset($_SESSION['UserSession'])){
 
       </div>
       <!-- Content wrapper End -->
-      <div id="footer">Footer</div>
+      <div id="footer">
+            <h2>About us</h2>
+            <p>Address: Lulea tekniska universitet, 971 87 Luleå, Sweden</p>
+            <p>Department of Computer Science, Electrical and Space Engineering<p>
+            <p><a href="mailto:hamhol-5@ltu.se?subject=feedback">Contact us by email</a></p>
+            <p>Copyright &copy; Hampus Holmström, Elias Groth 2017</p>
+      </div>
    </div>
    <!-- Main content End -->
  </body>

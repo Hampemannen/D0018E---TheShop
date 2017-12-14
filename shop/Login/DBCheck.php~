@@ -11,7 +11,7 @@ if(CheckCredentials($_POST['username'],$_POST['password'],$conn)){
   exit;
 }else{
   echo "Wrong username or password";
-  header( "refresh:3; ./login.php" );
+  header( "refresh:2; ./login.php" );
   exit;
 }
 /* Make sure that code below does not get executed when we redirect. */
@@ -86,7 +86,7 @@ function CheckCredentials($username,$password,$conn){
   $username="'".$username."'";
   $password="'".$password."'";
   //Find the User in the DB and its corresponding password
-  $user_id = "SELECT user_id,password FROM Users WHERE ( user_id =$username AND password =$password ) ";
+  $user_id = "SELECT user_id,password FROM users WHERE ( user_id =$username AND password =$password ) ";
   //echo $user_id;
   $result = mysqli_query($conn,$user_id);
   if(mysqli_num_rows($result)==1){
@@ -105,7 +105,7 @@ function CheckCredentials($username,$password,$conn){
     //Format username
     $username="'".$username."'";
     //Find the User in the DB
-    $user_id = "SELECT user_id,id,IsAdmin FROM Users WHERE ( user_id =$username ) ";
+    $user_id = "SELECT user_id,id,IsAdmin FROM users WHERE ( user_id =$username ) ";
     $result = mysqli_query($conn,$user_id);
     if(mysqli_num_rows($result)==1){
       $result=mysqli_fetch_array($result);

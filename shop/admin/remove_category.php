@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 
 $remove_id = $_GET['id'];
 
-$delete_category = "DELETE FROM categories WHERE id='$remove_id'";
+$delete_category = "DELETE FROM Categories WHERE id='$remove_id'";
 
 $submit = mysqli_query($conn, $delete_category);
 

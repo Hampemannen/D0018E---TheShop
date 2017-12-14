@@ -29,7 +29,6 @@ footer, header, hgroup, menu, nav, section {
 
 /*
 Color palette:
-
 500 #607D8B
 50 #ECEFF1
 100 #CFD8DC
@@ -43,7 +42,6 @@ Color palette:
 900 #263238
 Black #000000
 White #FFFFFF
-
 */
 
 
@@ -58,9 +56,18 @@ body{
 	background: #455A64;
 }
 
+.detailed_wrapper{
+  width: 1000px;
+  height: auto;
+  margin: auto;
+  background: #455A64;
+}
+
+
+
 .header_wrapper{
   width: 1000px;
-  height: 100px;
+  height: 200px;
 }
 
 .content_wrapper{
@@ -78,6 +85,13 @@ body{
   background: #B0BEC5;
 }
 
+#detailed{
+  width: 800px;
+  height: 1600px;
+  float: right;
+  background: #B0BEC5;
+}
+
 #content_title{
 	background: #90A4AE;
 	color: #263238;
@@ -90,6 +104,12 @@ body{
 #sidebar{
   width: 200px;
   height: 800px;
+  float: left;
+  background: #455A64;
+}
+#detailedbar{
+  width: 200px;
+  height: 1600px;
   float: left;
   background: #455A64;
 }

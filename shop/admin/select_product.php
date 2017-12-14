@@ -31,7 +31,7 @@
 
     <?php
 
-    $get_products = "SELECT * FROM products";
+    $get_products = "SELECT * FROM Products";
     $run_products = mysqli_query($conn, $get_products);
 
 

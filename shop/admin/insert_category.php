@@ -55,7 +55,7 @@
     /* Getting data for product from table fields */
     $categories_name = $_POST['categories_name'];
 
-    $get_category ="INSERT INTO categories (name) VALUES('$categories_name')";
+    $get_category ="INSERT INTO Categories (name) VALUES('$categories_name')";
 
     /* Inserting data to the DB */
     $insert_category = mysqli_query($conn, $get_category);

@@ -12,31 +12,31 @@ function HasAlreadyReviewed($userid,$productid,$conn){
 
 
 function UpdateQuery_Grade($productid,$grade,$conn){
-  $query="UPDATE `products`
+  $query="UPDATE `Products`
           SET `sum_grades` = `sum_grades` + $grade , `times_graded` = `times_graded` + 1
           WHERE (`id` = $productid) LIMIT 1";
   $result = mysqli_query($conn,$query);
   echo mysqli_error($conn);
   $averagegrade = CalculateAverageGrade($productid,$conn);
   echo $averagegrade;
-  $query="UPDATE `products`
+  $query="UPDATE `Products`
           SET `average_grade`= $averagegrade
           WHERE (`id` = $productid) LIMIT 1";
   $result = mysqli_query($conn,$query);
   if($result){
-    echo mysqli_error($conn);
-    echo "Query was successful but does not work if the values are null already etsting dgfdn";
+    //echo mysqli_error($conn);
+    //echo "Query was successful but does not work if the values are null already etsting dgfdn";
     return TRUE;
   }else{
-    echo mysqli_error($conn);
-    echo "Something doesnt work anymore, does not work if values are null already";
+    //echo mysqli_error($conn);
+    //echo "Something doesnt work anymore, does not work if values are null already";
     return FALSE;
   }
 }
 
 
 function GetSpecificUserReview($userid,$productid,$conn){
-  $query= "SELECT * FROM `reviews` WHERE ( Users_id =$userid AND products_id = $productid) ";
+  $query= "SELECT * FROM `Reviews` WHERE ( Users_id =$userid AND products_id = $productid) ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)==0){
     return False;
@@ -46,7 +46,7 @@ function GetSpecificUserReview($userid,$productid,$conn){
 }
 
 function GetProductInfoBeacuseIncludeDoesntWork($productid,$conn){
-  $query= "SELECT * FROM products WHERE ( id = $productid) LIMIT 1 ";
+  $query= "SELECT * FROM Products WHERE ( id = $productid) LIMIT 1 ";
   $result = mysqli_query($conn,$query);
   //$row = mysqli_fetch_array($result);
   if($result!=FALSE){
@@ -67,7 +67,7 @@ function CalculateAverageGrade($productid,$conn){
 }
 
 function GetproductReviews($productid,$conn){
-  $query = "SELECT * FROM reviews WHERE ( products_id = $productid)";
+  $query = "SELECT * FROM Reviews WHERE ( products_id = $productid)";
   $result = mysqli_query($conn,$query);
   if($result){
     return $result;

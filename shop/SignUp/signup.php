@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <?php include '../functions/functions.php';?>
@@ -64,16 +65,10 @@
        <div id="sidebar">
 
          <!--<div id="sidebar_title">Categories</div>
-
          <ul id="categories_list">
-
-
            <?php
-
            getCategories();
-
               ?>
-
          </ul>
        -->
 

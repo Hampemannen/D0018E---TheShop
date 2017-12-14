@@ -1,8 +1,14 @@
 <!DOCTYPE>
 <?php
 session_start();
-if(isset($_SESSION['UserSession']) & $_SESSION["IsAdmin"]==1){
-  echo $_SESSION['UserSession'];
+if(isset($_SESSION['UserSession'])){
+	if($_SESSION["IsAdmin"]==1){
+		echo $_SESSION['UserSession'];
+	}else{
+		echo "Please Login as Admin";
+		header("refresh:3 ../Login/login.php");	
+		exit();
+	}
 }else{
   echo "Please Login as Admin";
   header("refresh:3 ../Login/login.php");
@@ -44,6 +50,13 @@ if(isset($_SESSION['UserSession']) & $_SESSION["IsAdmin"]==1){
     <td align="left">
       <form action="select_category.php">
         <input type="submit" value="Category management">
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="right">
+      <form action="remove_order.php">
+        <input type="submit" value="Remove order">
       </form>
     </td>
   </tr>

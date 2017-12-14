@@ -1,7 +1,7 @@
 <?php
 function InsertQuery_Cart($price,$quantity,$productid,$userid,$conn){
   $price= $price * $quantity;
-  $query="INSERT INTO `shopping carts`(price, quantity, products_id, Users_id) VALUES ($price,$quantity,$productid,$userid)";
+  $query="INSERT INTO `Shopping Carts`(price, quantity, products_id, Users_id) VALUES ($price,$quantity,$productid,$userid)";
   $result = mysqli_query($conn,$query);
   if($result){
     return TRUE;
@@ -15,7 +15,7 @@ function InsertQuery_Cart($price,$quantity,$productid,$userid,$conn){
 
 function UpdateQuery_Cart($price,$quantity,$productid,$userid,$conn){
   $price= $price * $quantity;
-  $query="UPDATE `shopping carts`
+  $query="UPDATE `Shopping Carts`
           SET price = $price, quantity=$quantity
           WHERE (Users_id = $userid AND products_id = $productid)";
   $result = mysqli_query($conn,$query);
@@ -29,7 +29,7 @@ function UpdateQuery_Cart($price,$quantity,$productid,$userid,$conn){
 }
 
 function EmptyQuery_Cart($userid,$conn){
-$query = "DELETE FROM `shopping carts`
+$query = "DELETE FROM `Shopping Carts`
           WHERE Users_id=$userid";
 $result=mysqli_query($conn,$query);
   if($result){
@@ -42,7 +42,7 @@ $result=mysqli_query($conn,$query);
 
 
 function DeleteQuery_Cart($userid,$productid,$conn){
-  $query = "DELETE FROM `shopping carts`
+  $query = "DELETE FROM `Shopping Carts`
             WHERE Users_id=$userid AND products_id=$productid";
   $result=mysqli_query($conn,$query);
     if($result){
@@ -54,7 +54,7 @@ function DeleteQuery_Cart($userid,$productid,$conn){
 }
 
 function IncreaseQuery_Product($productid,$quantity,$conn){
-  $query="UPDATE `products`
+  $query="UPDATE `Products`
           SET  quantity=quantity + $quantity
           WHERE (id = $productid)";
   $result = mysqli_query($conn,$query);
@@ -68,7 +68,7 @@ function IncreaseQuery_Product($productid,$quantity,$conn){
 }
 
 function DecreaseQuery_Product($productid,$quantity,$conn){
-    $query="UPDATE `products`
+    $query="UPDATE `Products`
             SET quantity= quantity - $quantity
             WHERE (id = $productid)";
     $result = mysqli_query($conn,$query);
@@ -82,7 +82,7 @@ function DecreaseQuery_Product($productid,$quantity,$conn){
 }
 
 function GetShoppingCart($userid,$conn){
-  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id =$userid ) ";
+  $query= "SELECT * FROM `Shopping Carts` WHERE ( Users_id =$userid ) ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)==0){
     return False;
@@ -93,7 +93,7 @@ function GetShoppingCart($userid,$conn){
 }
 
 function GetProductInCart($userid,$productid,$conn){
-  $query= "SELECT * FROM `shopping carts` WHERE ( Users_id = $userid AND products_id = $productid) ";
+  $query= "SELECT * FROM `Shopping Carts` WHERE ( Users_id = $userid AND products_id = $productid) ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)==0){
     return False;
@@ -105,12 +105,12 @@ function GetProductInCart($userid,$productid,$conn){
 
 function DecreaseQuery_Cart($userid,$productid,$quantity,$conn){
     //Get the price for the product
-    $query= "SELECT price FROM products WHERE ( id = $productid) LIMIT 1 ";
+    $query= "SELECT price FROM Products WHERE ( id = $productid) LIMIT 1 ";
     $result = mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result);
     //Calculate the total decrease in price
     $itemcost=$row['price']*$quantity;
-    $query="UPDATE `shopping carts`
+    $query="UPDATE `Shopping Carts`
             SET quantity= quantity - $quantity, price= price - $itemcost
             WHERE (products_id = $productid AND Users_id = $userid) ";
     $result = mysqli_query($conn,$query);
@@ -139,7 +139,7 @@ function InsertProductCart($username,$userid,$productid,$conn){
   $resultproducts = mysqli_fetch_array($resultproducts);
   //Check if the User has already put in a order of that product
   //echo $query;
-  $query= "SELECT * FROM `shopping carts` WHERE  Users_id =$userid AND products_id=$productid  ";
+  $query= "SELECT * FROM `Shopping Carts` WHERE  Users_id =$userid AND products_id=$productid  ";
   //echo $query;
   $resultshoppingcart = mysqli_query($conn,$query);
   //echo mysqli_error($resultshoppingcart);
@@ -161,7 +161,7 @@ function InsertProductCart($username,$userid,$productid,$conn){
 }
 
 function GetProductInfo($productid,$conn){
-  $query= "SELECT * FROM products WHERE ( id = $productid) LIMIT 1 ";
+  $query= "SELECT * FROM Products WHERE ( id = $productid) LIMIT 1 ";
   $result = mysqli_query($conn,$query);
   //$row = mysqli_fetch_array($result);
   return $result;
@@ -169,7 +169,7 @@ function GetProductInfo($productid,$conn){
 
 //
 function UpdatePricesCart($userid,$conn){
-  $query = "SELECT `id`,`products_id`,`quantity` FROM `shopping carts` WHERE  Users_id =$userid ";
+  $query = "SELECT `id`,`products_id`,`quantity` FROM `Shopping Carts` WHERE  Users_id =$userid ";
   $result = mysqli_query($conn,$query);
   if(mysqli_num_rows($result)!=0){
   while($row = mysqli_fetch_array($result)){
@@ -178,7 +178,7 @@ function UpdatePricesCart($userid,$conn){
     $product = mysqli_fetch_array($product);
     $newprice = $row['quantity'] * $product['price'] ;
 
-    $query="UPDATE `shopping carts`
+    $query="UPDATE `Shopping Carts`
             SET price= $newprice
             WHERE (products_id = $productid AND Users_id = $userid) ";
     $updateresult = mysqli_query($conn,$query);

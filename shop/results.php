@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 
 <?php include 'functions/functions.php'; ?>
-<?php session_start();
-if(isset($_SESSION['UserSession'])){
-  echo $_SESSION['UserSession'];
-};?>
+<?php session_start(); ?>
 
  <html>
 
@@ -31,16 +28,34 @@ if(isset($_SESSION['UserSession'])){
 
       <ul id="menu">
         <li><a href="index.php">Home</a></li>
+        <?php if(!isset($_SESSION['UserSession'])){ ?>
         <li><a href= "./Login/login.php">Login</a></li>
         <li><a href="./SignUp/signup.php">Sign up</a></li>
-        <li><a href="#">Contact us</a></li>
+      <?php }
+      if(isset($_SESSION['UserSession'])){ ?>
+        <li><a href="./ShoppingCart/shoppingcart.php">Shopping Cart</a></li>
+        <li><a href="./Order/Orders.php">Orders</a></li>
+    <?php 
+        if(($_SESSION['IsAdmin']==1)){ ?>
+        <li><a href="admin/index.php">Admin</a></li>
+      <?php } 
+	}?>
       </ul>
 
       <div id="form">
-        <form>
+        <form method="get" action="results.php" enctype="multipart/form-data">
           <input type="text" name="search" placeholder="Search product..">
           <input type="image"  src="images/search.png" name="submit" value="Search">
         </form>
+        <?php
+            if(isset($_SESSION['UserSession'])){ ?>
+            <li>Logged in as: <?php echo $_SESSION['UserSession']; ?></li>
+            <li>
+              <button onclick="location.href='./Login/logout.php'" type="button">
+                Logout
+              </button>
+          </li>
+          <?php } ?>
       </div>
 
      </div>
@@ -80,7 +95,7 @@ if(isset($_SESSION['UserSession'])){
 
               $search_query = $_GET['search'];
 
-             $get_products = "SELECT * FROM products WHERE keywords LIKE '%$search_query%' OR name LIKE '%$search_query%'";
+             $get_products = "SELECT * FROM Products WHERE keywords LIKE '%$search_query%' OR name LIKE '%$search_query%'";
              $run_products = mysqli_query($conn, $get_products);
 
              while ($row_products=mysqli_fetch_array($run_products)){
@@ -119,7 +134,13 @@ if(isset($_SESSION['UserSession'])){
       </div>
       <!-- Content wrapper End -->
 
-      <div id="footer">Footer</div>
+      <div id="footer">
+            <h2>About us</h2>
+            <p>Address: Lulea tekniska universitet, 971 87 Luleå, Sweden</p>
+            <p>Department of Computer Science, Electrical and Space Engineering<p>
+            <p><a href="mailto:hamhol-5@ltu.se?subject=feedback">Contact us by email</a></p>
+            <p>Copyright &copy; Hampus Holmström, Elias Groth 2017</p>
+      </div>
 
 
    </div>
